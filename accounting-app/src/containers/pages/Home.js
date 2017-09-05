@@ -1,6 +1,7 @@
 import React from "react"
 import {connect} from "react-redux";
 import {fetchStocks} from "../../actions/stockActions";
+import {setPageTitle} from "../../actions/pageActions";
 
 @connect((store) => {
         return {
@@ -12,6 +13,7 @@ export default class Home extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(fetchStocks())
+        this.props.dispatch(setPageTitle("Home"))
     }
 
     render() {
