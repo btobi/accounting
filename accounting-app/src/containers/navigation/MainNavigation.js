@@ -9,6 +9,9 @@ export default class MainNavigation extends Component {
                 <Menu.Item as={NavLink} to='/home'>
                     Home
                 </Menu.Item>
+                <Menu.Item as={NavLink} to='/accounting/records'>
+                    Buchungssätze
+                </Menu.Item>
                 <Menu.Item as={NavLink} to='/masterdata'>
                     Stammdaten
                 </Menu.Item>

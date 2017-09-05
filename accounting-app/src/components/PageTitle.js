@@ -4,7 +4,8 @@ import {setPageTitle} from "../actions/pageActions";
 
 @connect((store) => {
     return {
-        page: store.page
+        page: store.page,
+        pending: store.common.pending
     }
 })
 export default class PageTitle extends React.Component {
@@ -15,7 +16,11 @@ export default class PageTitle extends React.Component {
 
     render() {
         return (
-            <h1>{this.props.page.pageTitle}</h1>
+            <h1>
+                {this.props.page.pageTitle}
+                &nbsp;
+                {/*{this.props.pending ? <div>PENDING</div> : null}*/}
+            </h1>
         )
     }
 }

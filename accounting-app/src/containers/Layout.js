@@ -7,6 +7,7 @@ import Masterdata from "./pages/masterdata/masterdata";
 import {connect} from "react-redux";
 
 import {setPageTitle} from "../actions/pageActions"
+import Accounting from "./pages/accounting/accounting";
 
 export default class Layout extends React.Component {
 
@@ -20,6 +21,7 @@ export default class Layout extends React.Component {
                         <Switch>
                             <Route path='/home' component={Home}/>
                             <Route path='/masterdata' component={Masterdata}/>
+                            <Route path='/accounting/records'component={Accounting} />
                             <Route render={() => <h1>Not found</h1>}/>
                         </Switch>
                     </div>

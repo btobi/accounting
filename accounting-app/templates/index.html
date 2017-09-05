@@ -1,13 +1,20 @@
 {% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Example</title>
-  </head>
+    <title>Accounting-App</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-  <body>
-    <div id="root"></div>
-    {% render_bundle 'main' %}
-  </body>
+</head>
+
+<body>
+<div id="root"></div>
+{% render_bundle 'main' %}
+</body>
+<style>
+{#    body {#}
+{#        font-family: 'Raleway', sans-serif !important;#}
+{#    }#}
+</style>
 </html>
