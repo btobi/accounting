@@ -5,8 +5,10 @@ export default class AccountingRecords extends React.Component {
 
     render() {
 
+        console.log(this.props.records);
+
         const records = this.props.records.map(a => (
-            <Table.Row>
+            <Table.Row key={a.id}>
                 <Table.Cell>{a.date}</Table.Cell>
                 <Table.Cell><Label size="tiny">{a.debit.number}</Label></Table.Cell>
                 <Table.Cell>{a.debit.name}</Table.Cell>
@@ -20,7 +22,7 @@ export default class AccountingRecords extends React.Component {
 
         return (
             <div>
-                <h2>Konten</h2>
+                <h2>Buchungssätze</h2>
                 <Table definition>
                     <Table.Header>
                         <Table.Row>

@@ -3,6 +3,9 @@ import {setPageTitle} from "../../../actions/pageActions";
 import {connect} from "react-redux";
 import {getAccountingRecords} from "../../../actions/accountingActions";
 import AccountingRecords from "./accounting-records";
+import AccountingRecordNew from "./accounting-record-new";
+import {Container, right} from "semantic-ui-react";
+import {getAccounts} from "../../../actions/masterdataActions";
 
 @connect((store) => {
     return {
@@ -15,12 +18,18 @@ export default class Accounting extends React.Component {
     componentWillMount() {
         this.props.dispatch(setPageTitle("Buchungssätze"))
         this.props.dispatch(getAccountingRecords())
+        this.props.dispatch(getAccounts())
     }
 
     render() {
 
         return (
-            <AccountingRecords records={this.props.records} />
+            <div>
+                <Container textAlign="right" fluid>
+                <AccountingRecordNew accounts={this.props.accounts} />
+                </Container>
+                <AccountingRecords records={this.props.records}/>
+            </div>
         )
 
     }
