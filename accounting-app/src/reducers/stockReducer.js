@@ -26,6 +26,5 @@ export default function stockReducer(state = defaultState, action) {
             break;
         }
     }
-    console.log("NO ACTION")
     return state
 }

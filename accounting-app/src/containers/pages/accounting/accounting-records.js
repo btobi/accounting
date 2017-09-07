@@ -9,12 +9,12 @@ export default class AccountingRecords extends React.Component {
 
         const records = this.props.records.map(a => (
             <Table.Row key={a.id}>
-                <Table.Cell>{a.date}</Table.Cell>
-                <Table.Cell><Label size="tiny">{a.debit.number}</Label></Table.Cell>
+                <Table.Cell textAlign="center">{a.date}</Table.Cell>
+                <Table.Cell width="1"><Label size="tiny">{a.debit.number}</Label></Table.Cell>
                 <Table.Cell>{a.debit.name}</Table.Cell>
-                <Table.Cell><Label size="tiny">{a.credit.number}</Label></Table.Cell>
+                <Table.Cell width="1"><Label size="tiny">{a.credit.number}</Label></Table.Cell>
                 <Table.Cell>{a.credit.name}</Table.Cell>
-                <Table.Cell>{a.amount}</Table.Cell>
+                <Table.Cell textAlign="right">{a.amount}</Table.Cell>
                 <Table.Cell>{a.comment}</Table.Cell>
                 <Table.Cell>{a.person}</Table.Cell>
             </Table.Row>

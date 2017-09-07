@@ -18,7 +18,6 @@ export default class Accounting extends React.Component {
     componentWillMount() {
         this.props.dispatch(setPageTitle("Buchungssätze"))
         this.props.dispatch(getAccountingRecords())
-        this.props.dispatch(getAccounts())
     }
 
     render() {

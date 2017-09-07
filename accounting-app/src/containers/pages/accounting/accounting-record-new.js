@@ -1,7 +1,12 @@
 import React from "react"
-import {Button, Divider, Dropdown, Form, Header, Label, Modal, Segment} from "semantic-ui-react";
+import {Button, Divider, Form, Dropdown, Header, Label, Modal, Segment} from "semantic-ui-react";
+import {connect} from "react-redux";
+import {getAccountingRecords, postAccountingRecord} from "../../../actions/accountingActions"
+import CForm from "../../../components/Form";
+import FormModal from "../../../components/FormModal";
 
 
+@connect()
 export default class AccountingRecordNew extends React.Component {
 
     constructor(props) {
@@ -9,26 +14,30 @@ export default class AccountingRecordNew extends React.Component {
         this.state = {
             open: false,
             accountingRecord: {
-                debit: "",
-                credit: "",
-                amount: "",
+                debit_id: 0,
+                credit_id: 0,
+                amount: 0,
                 date: "",
                 person: "",
                 comment: "",
             }
         };
 
-        this.handleChange = this.change.bind(this);
-        this.handleSubmit = this.submit.bind(this);
+        this.handleChange = this.change.bind(this)
+        this.handleSubmit = this.submit.bind(this)
     }
 
     change(event, data) {
-        this.setState({accountingRecord: {...this.state.accountingRecord, [data.name] : data.value}});
+        this.setState({accountingRecord: {...this.state.accountingRecord, [data.name]: data.value}})
     }
 
     submit(event, data) {
-        console.log(this.state)
-        event.preventDefault();
+        event.preventDefault()
+        this.props.dispatch(postAccountingRecord(this.state.accountingRecord))
+            .then(() => {
+                this.close()
+                this.props.dispatch(getAccountingRecords())
+            })
     }
 
     close = () => this.setState({open: false})
@@ -47,42 +56,31 @@ export default class AccountingRecordNew extends React.Component {
         return (
             <div>
                 <Button onClick={this.open}>Neuer Buchungssatz</Button>
-                <Modal open={this.state.open}>
-                    <Modal.Header>Neuen Buchungssatz anlegen</Modal.Header>
-                    <Modal.Content>
-                        <Modal.Description>
-                            <Form onSubmit={this.handleSubmit}>
-                                <h3>Konten</h3>
-                                <Form.Group widths="equal">
-                                    <Form.Dropdown label="Soll" placeholder="Konto - Soll" selection
-                                                   options={accounts} name="debit" value={this.state.debit}
-                                                   onChange={this.handleChange}/>
-                                    <Form.Dropdown label="Haben" placeholder="Konto - Haben" selection
-                                                   options={accounts} name="credit" value={this.state.credit}
-                                                   onChange={this.handleChange}/>
-                                </Form.Group>
-                                <h3>Info</h3>
-                                <Form.Group widths="equal">
-                                    <Form.Input label='Betrag' name="amount" value={this.state.amount}
-                                                onChange={this.handleChange}/>
-                                    <Form.Input label='Datum' name="date" value={this.state.date}
-                                                onChange={this.handleChange}/>
-                                </Form.Group>
-                                <Form.Group widths="equal">
-                                    <Form.Input label='Kommentar' name="comment" value={this.state.comment}
-                                                onChange={this.handleChange}/>
-                                    <Form.Input label='Person' name="person" value={this.state.person}
-                                                onChange={this.handleChange}/>
-                                </Form.Group>
-                            </Form>
-                        </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button onClick={this.close}>Abbrechen</Button>
-                        <Button positive icon='checkmark' labelPosition='right' content="Buchen"
-                                onClick={this.handleSubmit}/>
-                    </Modal.Actions>
-                </Modal>
+                <FormModal title="Neuen Buchungssatz anlegen" open={this.state.open} handleSubmit={this.handleSubmit}
+                           button="Speichern" icon="save" close={this.close.bind(this)}>
+                    <h3>Konten</h3>
+                    <Form.Group widths="equal">
+                        <Form.Dropdown label="Soll" placeholder="Konto - Soll" selection
+                                       options={accounts} name="debit_id" value={this.state.debit_id}
+                                       onChange={this.handleChange}/>
+                        <Form.Dropdown label="Haben" placeholder="Konto - Haben" selection
+                                       options={accounts} name="credit_id" value={this.state.credit_id}
+                                       onChange={this.handleChange}/>
+                    </Form.Group>
+                    <h3>Info</h3>
+                    <Form.Group widths="equal">
+                        <Form.Input label='Betrag' name="amount" value={this.state.amount}
+                                    onChange={this.handleChange}/>
+                        <Form.Input label='Datum' name="date" value={this.state.date}
+                                    onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group widths="equal">
+                        <Form.Input label='Kommentar' name="comment" value={this.state.comment}
+                                    onChange={this.handleChange}/>
+                        <Form.Input label='Person' name="person" value={this.state.person}
+                                    onChange={this.handleChange}/>
+                    </Form.Group>
+                </FormModal>
             </div>
         )
 

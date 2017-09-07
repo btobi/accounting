@@ -1,4 +1,6 @@
+import time
 from django.shortcuts import render
+from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -27,3 +29,10 @@ class AccountingRecords(APIView):
     def get(self, request):
         data = AccountingRecordSerializer(AccountingRecord.objects.all(), many=True).data
         return Response(data)
+
+class AccountingRecordView(APIView):
+    def post(self, request):
+        print(request)
+        time.sleep(4)
+        record = AccountingRecord(**request.data).save()
+        return Response(record)

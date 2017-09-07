@@ -6,10 +6,15 @@ import Home from "./pages/Home";
 import Masterdata from "./pages/masterdata/masterdata";
 import {connect} from "react-redux";
 
-import {setPageTitle} from "../actions/pageActions"
+import {getAccounts} from "../actions/masterdataActions"
 import Accounting from "./pages/accounting/accounting";
 
+@connect()
 export default class Layout extends React.Component {
+
+    componentWillMount() {
+        this.props.dispatch(getAccounts())
+    }
 
     render() {
         return (

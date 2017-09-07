@@ -14,7 +14,7 @@ export default class Masterdata extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setPageTitle("Stammdaten"))
-        this.props.dispatch(getAccounts())
+        console.log(this.props.accounts)
     }
 
     render() {
