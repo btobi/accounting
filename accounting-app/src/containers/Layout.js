@@ -8,17 +8,14 @@ import {connect} from "react-redux";
 
 import {getAccounts} from "../actions/masterdataActions"
 import Accounting from "./pages/accounting/accounting";
+import LoadDefaults from "./util/LoadDefaults";
 
-@connect()
 export default class Layout extends React.Component {
-
-    componentWillMount() {
-        this.props.dispatch(getAccounts())
-    }
 
     render() {
         return (
             <div>
+                <LoadDefaults/>
                 <MainNavigation/>
                 <div style={{marginLeft: '15rem'}}>
                     <div style={{padding: '1rem'}}>
