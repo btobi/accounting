@@ -15,8 +15,6 @@ export default class FormModal extends React.Component {
 
     render() {
 
-        console.log(this.props.handleSumbit)
-
         return (
             <Modal open={this.props.open}>
                 <Modal.Header>{this.props.title}</Modal.Header>

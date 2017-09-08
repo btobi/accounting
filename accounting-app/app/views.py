@@ -25,14 +25,20 @@ class Accounts(APIView):
         return Response(data)
 
 
+class AccountView(APIView):
+    def post(self, request):
+        print(request.data)
+        account, created = Account.objects.update_or_create(number=request.data['number'], defaults={**request.data})
+        return Response()
+
+
 class AccountingRecords(APIView):
     def get(self, request):
         data = AccountingRecordSerializer(AccountingRecord.objects.all(), many=True).data
         return Response(data)
 
+
 class AccountingRecordView(APIView):
     def post(self, request):
-        print(request)
-        time.sleep(4)
-        record = AccountingRecord(**request.data).save()
-        return Response(record)
+        record, created = AccountingRecord.objects.get_or_create(**request.data)
+        return Response()

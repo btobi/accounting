@@ -61,7 +61,7 @@ export default class AccountingRecordNew extends React.Component {
                     <h3>Konten</h3>
                     <Form.Group widths="equal">
                         <Form.Dropdown label="Soll" placeholder="Konto - Soll" selection
-                                       options={accounts} name="debit_id" value={this.state.debit_id}
+                                       options={accounts} name="debit_id" value={this.state.accountingRecord.debit_id}
                                        onChange={this.handleChange}/>
                         <Form.Dropdown label="Haben" placeholder="Konto - Haben" selection
                                        options={accounts} name="credit_id" value={this.state.credit_id}
@@ -69,15 +69,15 @@ export default class AccountingRecordNew extends React.Component {
                     </Form.Group>
                     <h3>Info</h3>
                     <Form.Group widths="equal">
-                        <Form.Input label='Betrag' name="amount" value={this.state.amount}
+                        <Form.Input label='Betrag' name="amount" value={this.state.accountingRecord.amount}
                                     onChange={this.handleChange}/>
-                        <Form.Input label='Datum' name="date" value={this.state.date}
+                        <Form.Input label='Datum' name="date" value={this.state.accountingRecord.date}
                                     onChange={this.handleChange}/>
                     </Form.Group>
                     <Form.Group widths="equal">
-                        <Form.Input label='Kommentar' name="comment" value={this.state.comment}
+                        <Form.Input label='Kommentar' name="comment" value={this.state.accountingRecord.comment}
                                     onChange={this.handleChange}/>
-                        <Form.Input label='Person' name="person" value={this.state.person}
+                        <Form.Input label='Person' name="person" value={this.state.accountingRecord.person}
                                     onChange={this.handleChange}/>
                     </Form.Group>
                 </FormModal>
