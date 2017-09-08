@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Button, Dimmer, Form, Loader, Modal} from "semantic-ui-react";
 import DjangoCSRFToken from 'django-react-csrftoken'
 import {connect} from "react-redux";
-import CForm from "./Form";
+import CForm from "./CForm";
 
 @connect((store) => {
     return {
@@ -14,7 +14,6 @@ import CForm from "./Form";
 export default class FormModal extends React.Component {
 
     render() {
-
         return (
             <Modal open={this.props.open}>
                 <Modal.Header>{this.props.title}</Modal.Header>
@@ -28,7 +27,8 @@ export default class FormModal extends React.Component {
                 <Modal.Actions>
                     <Button onClick={this.props.close}>Abbrechen</Button>
                     <Button positive icon={this.props.icon} labelPosition='right' content={this.props.button}
-                            onClick={this.props.handleSubmit} loading={this.props.pending} disabled={this.props.pending} />
+                            onClick={this.props.handleSubmit} loading={this.props.pending}
+                            disabled={this.props.pending}/>
                 </Modal.Actions>
             </Modal>
         )

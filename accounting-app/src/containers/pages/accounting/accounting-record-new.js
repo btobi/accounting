@@ -2,7 +2,7 @@ import React from "react"
 import {Button, Divider, Form, Dropdown, Header, Label, Modal, Segment} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {getAccountingRecords, postAccountingRecord} from "../../../actions/accountingActions"
-import CForm from "../../../components/Form";
+import CForm from "../../../components/CForm";
 import FormModal from "../../../components/FormModal";
 
 
