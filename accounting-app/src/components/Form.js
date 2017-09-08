@@ -15,7 +15,6 @@ export default class CForm extends React.Component {
 
         return (
             <Form>
-                <DjangoCSRFToken/>
                 <Dimmer active={this.props.pending} inverted>
                     <Loader inverted />
                 </Dimmer>

@@ -24,9 +24,9 @@ export default class Layout extends React.Component {
                     <div style={{padding: '1rem'}}>
                         <PageTitle title={this.title}/>
                         <Switch>
-                            <Route path='/home' component={Home}/>
+                            {/*<Route path='/home' component={Home}/>*/}
                             <Route path='/masterdata' component={Masterdata}/>
-                            <Route path='/accounting/records'component={Accounting} />
+                            <Route path='/accounting/records' component={Accounting} />
                             <Route render={() => <h1>Not found</h1>}/>
                         </Switch>
                     </div>

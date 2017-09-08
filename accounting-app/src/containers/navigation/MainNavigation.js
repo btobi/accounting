@@ -6,10 +6,10 @@ export default class MainNavigation extends Component {
     render() {
         return (
             <Menu vertical inverted fixed='left' style={{paddingTop: '1rem'}}>
-                <Menu.Item as={NavLink} to='/home'>
-                    Home
-                </Menu.Item>
-                <Menu.Item as={NavLink} to='/accounting/records'>
+                {/*<Menu.Item as={NavLink} to='/home'>*/}
+                    {/*Home*/}
+                {/*</Menu.Item>*/}
+                <Menu.Item as={NavLink} to='/accounting/records/'>
                     Buchungssätze
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/masterdata'>

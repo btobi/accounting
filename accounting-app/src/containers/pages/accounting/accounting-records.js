@@ -5,8 +5,6 @@ export default class AccountingRecords extends React.Component {
 
     render() {
 
-        console.log(this.props.records);
-
         const records = this.props.records.map(a => (
             <Table.Row key={a.id}>
                 <Table.Cell textAlign="center">{a.date}</Table.Cell>

@@ -6,7 +6,7 @@ export default class Accounts extends React.Component {
     render() {
 
         const accounts = this.props.accounts.map(a => (
-            <Table.Row>
+            <Table.Row key={a.number}>
                 <Table.Cell>{a.number}</Table.Cell>
                 <Table.Cell>{a.type}</Table.Cell>
                 <Table.Cell>{a.name}</Table.Cell>
