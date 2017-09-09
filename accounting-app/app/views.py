@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from .models import Stock, Account, AccountingRecord
 from .serializers import StockSerializer, AccountSerializer, AccountingRecordSerializer
 
+from . import util
+
 from dateutil.relativedelta import relativedelta
 
 
@@ -34,21 +36,7 @@ class AccountView(APIView):
 
 class AccountingRecords(APIView):
     def post(self, request):
-        year = get_param(request, 'year', datetime.datetime.now().year)
-        month = get_param(request, 'month', datetime.datetime.now().month)
-
-        get_next = get_param(request, 'next', False);
-        get_previous = get_param(request, 'previous', False)
-
-        start = datetime.date(year, month, 1)
-
-        if get_next:
-            start = start + relativedelta(months=1)
-
-        if get_previous:
-            start = start - relativedelta(months=1)
-
-        end = start + relativedelta(months=1)
+        start, end = util.get_month_range(request)
 
         query = AccountingRecord.objects.filter(date__range=[start, end]).order_by("-date", "-id").all()
         data = AccountingRecordSerializer(query, many=True).data
@@ -75,9 +63,6 @@ class AccountingRecordView(APIView):
 def get_id(request):
     return request.data['id'] if 'id' in request.data else None
 
-
-def get_param(request, param, optional):
-    return request.data[param] if param in request.data else optional
 
 # def pages(request, query_set):
 #     page = request.data.page

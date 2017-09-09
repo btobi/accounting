@@ -6,6 +6,7 @@ import Masterdata from "containers/pages/masterdata/masterdata";
 
 import Accounting from "containers/pages/accounting/accounting";
 import LoadDefaults from "containers/util/LoadDefaults";
+import StatisticsAccounts from "containers/pages/statistics/statistics-accounts-overview";
 
 export default class Layout extends React.Component {
 
@@ -14,13 +15,14 @@ export default class Layout extends React.Component {
             <div>
                 <LoadDefaults/>
                 <MainNavigation/>
-                <div style={{marginLeft: '15rem'}}>
+                <div style={{marginLeft: '10rem'}}>
                     <div style={{padding: '1rem'}}>
                         <PageTitle title={this.title}/>
                         <Switch>
                             {/*<Route path='/home' component={Home}/>*/}
                             <Route path='/masterdata' component={Masterdata}/>
                             <Route path='/accounting/records' component={Accounting} />
+                            <Route path='/statistics/accounts' component={StatisticsAccounts} />
                             <Route render={() => <h1>Not found</h1>}/>
                         </Switch>
                     </div>

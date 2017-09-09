@@ -13,7 +13,7 @@ import {getAccounts} from "../../../actions/masterdataActions"
 export default class Masterdata extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setPageTitle("Stammdaten"))
+        this.props.dispatch(setPageTitle("Stammdaten", "Konten anlegen und bearbeiten", "settings"))
     }
 
     render() {

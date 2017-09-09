@@ -15,7 +15,7 @@ import AccountingRecordsMenu from "./accounting-records-menu"
 export default class Accounting extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setPageTitle("Buchungssätze"))
+        this.props.dispatch(setPageTitle("Buchungssätze", "Monatliche Auflistung", "terminal"))
         this.props.dispatch(getAccountingRecords())
     }
 

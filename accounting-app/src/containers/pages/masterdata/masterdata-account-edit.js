@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {getAccounts, postAccount} from "actions/masterdataActions";
-import {Button} from "semantic-ui-react";
+import {Button, Menu} from "semantic-ui-react";
 import XForm from "components/XForm"
 import FormModal from "components/FormModal";
 import {changeFormValue} from "actions/formActions"
@@ -63,7 +63,9 @@ export default class AccountEdit extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.open.bind(this)}>Neues Konto</Button>
+                <Menu.Menu>
+                    <Menu.Item onClick={this.open.bind(this)}>Neues Konto</Menu.Item>
+                </Menu.Menu>
                 <FormModal title="Konto anlegen" open={open} handleSubmit={this.handleSubmit}
                            button="Speichern" icon="save" close={this.close.bind(this)} pending={pending}>
                     <XForm.Input label="Kontennummer" name="number" form="accountEdit"/>

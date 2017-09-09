@@ -1,6 +1,10 @@
-export function setPageTitle(pageTitle="") {
+export function setPageTitle(pageTitle="", subTitle="", icon="") {
     return {
         type: "CHANGE_PAGE_TITLE",
-        payload: pageTitle
+        payload: {
+            pageTitle,
+            subTitle,
+            icon
+        }
     }
 }

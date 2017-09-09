@@ -27,7 +27,9 @@ export default class Accounts extends React.Component {
 
         const accounts = this.props.accounts.map(a => {
             return (
-                <Table.Row key={a.number} onClick={() => {this.fillFormData(a)}}>
+                <Table.Row key={a.number} onClick={() => {
+                    this.fillFormData(a)
+                }}>
                     <Table.Cell>{a.number}</Table.Cell>
                     <Table.Cell>{a.type}</Table.Cell>
                     <Table.Cell>{a.name}</Table.Cell>
@@ -40,10 +42,9 @@ export default class Accounts extends React.Component {
         return (
 
             <div>
-                <h2>Konten</h2>
-                <Container textAlign="right">
+                <Menu>
                     <AccountEdit account={this.state.account} open={this.state.openModal}/>
-                </Container>
+                </Menu>
                 <Table celled selectable>
                     <Table.Header>
                         <Table.Row>

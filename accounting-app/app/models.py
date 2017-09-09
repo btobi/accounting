@@ -1,4 +1,5 @@
 from django.db import models
+from . import util
 
 
 class Stock(models.Model):
@@ -28,10 +29,27 @@ class Account(models.Model):
     def __str__(self):
         return "[ {} | {} ] {}".format(self.number, self.type, self.name)
 
+    def get_total_until(self, date):
+        debit_entries = self.records_debit.filter(date__lt=date)
+        credit_entries = self.records_credit.filter(date__lt=date)
+        debit_sum = util.get_sum(debit_entries)
+        credit_sum = util.get_sum(credit_entries)
+
+        if self.type in ["LI", "RE"]:
+            return credit_sum - debit_sum
+        return debit_sum - credit_sum
+
+    def get_records(self, start, end):
+        debit_entries = self.records_debit.filter(date__range=[start, end])
+        credit_entries = self.records_credit.filter(date__range=[start, end])
+        return debit_entries, credit_entries
+
 
 class AccountingRecord(models.Model):
-    debit = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=False, blank=False, related_name="%(class)s_debit")
-    credit = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=False, blank=False, related_name="%(class)s_credit")
+    debit = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=False, blank=False,
+                              related_name="records_debit")
+    credit = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=False, blank=False,
+                               related_name="records_credit")
     amount = models.FloatField()
     date = models.DateField()
     comment = models.CharField(max_length=200)

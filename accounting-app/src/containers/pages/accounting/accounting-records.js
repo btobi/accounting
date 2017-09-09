@@ -5,6 +5,7 @@ import {fillForm} from "actions/formActions";
 import {changeFormValue} from "actions/formActions";
 import {deleteAccountingRecord} from "actions/accountingActions";
 import {getAccountingRecords} from "../../../actions/accountingActions";
+import {getAccountColor, getAccountLabel} from "../../util/commons";
 
 @connect((store) => {
     return {
@@ -16,7 +17,6 @@ export default class AccountingRecords extends React.Component {
     constructor(props) {
         super(props)
         this.formName = "recordEdit"
-        console.log("constructing records view")
     }
 
     fillFormData(record) {
@@ -30,23 +30,14 @@ export default class AccountingRecords extends React.Component {
         })
     }
 
-    getColor(type) {
-        switch(type) {
-            case "AS": return "blue"
-            case "LI": return "yellow"
-            case "RE": return "green"
-            case "EX": return "red"
-        }
-    }
-
     render() {
 
         const records = this.props.records.map(a => (
             <Table.Row key={a.id}>
                 <Table.Cell textAlign="center">{a.date}</Table.Cell>
-                <Table.Cell width="1"><Label size="tiny" basic color={this.getColor(a.debit.type)}>{a.debit.number}</Label></Table.Cell>
+                <Table.Cell width="1">{getAccountLabel(a.debit)}</Table.Cell>
                 <Table.Cell>{a.debit.name}</Table.Cell>
-                <Table.Cell width="1"><Label size="tiny" basic color={this.getColor(a.credit.type)}>{a.credit.number}</Label></Table.Cell>
+                <Table.Cell width="1">{getAccountLabel(a.credit)}</Table.Cell>
                 <Table.Cell>{a.credit.name}</Table.Cell>
                 <Table.Cell textAlign="right">{a.amount}</Table.Cell>
                 <Table.Cell>{a.comment}</Table.Cell>

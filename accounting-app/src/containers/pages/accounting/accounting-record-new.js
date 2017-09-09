@@ -58,8 +58,6 @@ export default class AccountingRecordNew extends React.Component {
             pending = this.props.record._pending
         }
 
-        console.log(this.props.record)
-
         return (
             <div>
                 <Menu.Item onClick={this.open}>Neuer Buchungssatz</Menu.Item>

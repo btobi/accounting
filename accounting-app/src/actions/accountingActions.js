@@ -1,4 +1,4 @@
-import Http from "../http"
+import Http from "Http"
 
 
 export function getAccountingRecords(requestData) {
