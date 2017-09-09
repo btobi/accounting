@@ -31,6 +31,7 @@ export default class Accounts extends React.Component {
                     <Table.Cell>{a.number}</Table.Cell>
                     <Table.Cell>{a.type}</Table.Cell>
                     <Table.Cell>{a.name}</Table.Cell>
+                    <Table.Cell>{a.iban}</Table.Cell>
                 </Table.Row>
             )
         });
@@ -49,6 +50,7 @@ export default class Accounts extends React.Component {
                             <Table.HeaderCell>Kontennummer</Table.HeaderCell>
                             <Table.HeaderCell>Typ</Table.HeaderCell>
                             <Table.HeaderCell>Bezeichnung</Table.HeaderCell>
+                            <Table.HeaderCell>IBAN</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>

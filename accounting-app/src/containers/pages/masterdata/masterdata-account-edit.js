@@ -70,6 +70,7 @@ export default class AccountEdit extends React.Component {
                     <XForm.Input label="Name" name="name" form="accountEdit"/>
                     <XForm.Dropdown label="Kontentyp" selection
                                    options={typeList} name="type" form="accountEdit"/>
+                    <XForm.Input label="IBAN" name="iban" form="accountEdit"/>
                 </FormModal>
             </div>
         )

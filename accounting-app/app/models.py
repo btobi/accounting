@@ -23,6 +23,7 @@ class Account(models.Model):
     number = models.PositiveIntegerField(primary_key=True)
     name = models.CharField(max_length=20)
     type = models.CharField(max_length=2, choices=accountTypes)
+    iban = models.CharField(max_length=28, null=True, default=None, blank=True)
 
     def __str__(self):
         return "[ {} | {} ] {}".format(self.number, self.type, self.name)

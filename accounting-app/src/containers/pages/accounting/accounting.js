@@ -3,14 +3,13 @@ import {setPageTitle} from "../../../actions/pageActions";
 import {connect} from "react-redux";
 import {getAccountingRecords} from "../../../actions/accountingActions";
 import AccountingRecords from "./accounting-records";
-import AccountingRecordNew from "./accounting-record-new";
 import {Container, right} from "semantic-ui-react";
-import {getAccounts} from "../../../actions/masterdataActions";
+import AccountingRecordsMenu from "./accounting-records-menu"
 
 @connect((store) => {
     return {
         accounts: store.masterdata.accounts,
-        records: store.accounting.records,
+        recordData: store.accounting.records,
     }
 })
 export default class Accounting extends React.Component {
@@ -24,10 +23,8 @@ export default class Accounting extends React.Component {
 
         return (
             <div>
-                <Container textAlign="right" fluid>
-                    <AccountingRecordNew />
-                </Container>
-                <AccountingRecords records={this.props.records}/>
+                <AccountingRecordsMenu year={this.props.recordData.year} month={this.props.recordData.month} />
+                <AccountingRecords records={this.props.recordData.data}/>
             </div>
         )
 

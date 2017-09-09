@@ -3,23 +3,32 @@ const API_PATH = "http://localhost:8080/api";
 
 axios.defaults.headers = {
     ...axios.defaults.headers,
-    "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value
+    "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value,
+    "X-SOMETHINGTOKEN": "HLLLO"
 }
 
 export default class Http {
 
     static get(path) {
-        return axios.get(API_PATH + sanitizePath(path));
+        return axios.get(getPath(path));
     }
 
     static post(path, data = {}) {
         console.log("POSTING DATA")
         console.log(data)
-        return axios.post(API_PATH + sanitizePath(path), data);
+        return axios.post(getPath(path), data);
+    }
+
+    static delete(path, data = {}) {
+        console.log("DELETE DATA")
+        console.log(data)
+        return axios.post(getPath(path), data, {
+            headers: { 'X-METHODOVERRIDE': 'DELETE' }
+        })
     }
 
 }
 
-function sanitizePath(path = "") {
-    return path.endsWith("/") ? path : path + "/"
+function getPath(path = "") {
+    return API_PATH + (path.endsWith("/") ? path : path + "/")
 }

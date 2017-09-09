@@ -1,5 +1,5 @@
 import React from "react"
-import {Button, Form} from "semantic-ui-react";
+import {Form, Menu} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {getAccountingRecords, postAccountingRecord} from "actions/accountingActions"
 import FormModal from "components/FormModal";
@@ -12,7 +12,6 @@ import {changeFormValue} from "actions/formActions";
     return {
         accounts: store.masterdata.accounts,
         record: store.forms.recordEdit,
-        forms: store.forms
     }
 })
 export default class AccountingRecordNew extends React.Component {
@@ -63,10 +62,10 @@ export default class AccountingRecordNew extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.open}>Neuer Buchungssatz</Button>
+                <Menu.Item onClick={this.open}>Neuer Buchungssatz</Menu.Item>
                 <FormModal title="Neuen Buchungssatz anlegen" open={open} handleSubmit={this.handleSubmit}
                            button="Speichern" icon="save" close={this.close.bind(this)} pending={pending}>
-                    <XForm.Input name="id" form={formName}/>
+                    <XForm.Input name="id" form={formName} type="hidden"/>
                     <h3>Konten</h3>
                     <Form.Group widths="equal">
                         <XForm.Dropdown label="Soll" placeholder="Konto - Soll" selection options={accounts}

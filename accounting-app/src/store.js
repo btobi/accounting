@@ -5,8 +5,8 @@ import promise from "redux-promise-middleware"
 
 import combineReducers from "./reducers/index"
 
-// const middleware = applyMiddleware(promise(), thunk);
-const middleware = applyMiddleware(promise(), thunk, createLogger());
+const middleware = applyMiddleware(promise(), thunk);
+// const middleware = applyMiddleware(promise(), thunk, createLogger());
 
 let store = createStore(combineReducers, middleware);
 

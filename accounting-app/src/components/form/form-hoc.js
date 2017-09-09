@@ -33,6 +33,8 @@ export default function withFormState(Component) {
 
         render() {
             const sanitizedProps = this.sanitizedProps
+            if (sanitizedProps.type === "hidden")
+                sanitizedProps.style = {display: 'none'}
             return <Component {...sanitizedProps} onChange={this.handleChange} value={this.value}/>
         }
     }
