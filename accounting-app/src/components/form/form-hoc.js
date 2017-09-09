@@ -1,4 +1,5 @@
 import React from "react";
+import {changeFormValue} from "actions/formActions";
 
 export default function withFormState(Component) {
 
@@ -10,30 +11,29 @@ export default function withFormState(Component) {
             const {forms, dispatch, form, ...sanitizedProps} = this.props
             this.forms = forms;
             this.formName = form;
-            this.form = forms[this.formName];
             this.dispatch = dispatch;
             this.sanitizedProps = sanitizedProps;
         }
 
-        change(event, data) {
-            this.setState({accountingRecord: {...this.state.accountingRecord, [data.name]: data.value}})
+        // componentWillMount() {
+        //     const {name, defaultValue} = this.sanitizedProps
+        //     console.log("Mount form component", name, defaultValue)
+        //     this.change(null, {name, value: defaultValue})
+        // }
+
+        componentWillMount() {
+            this.value = this.forms[this.formName][this.props.name] || ""
         }
 
         change(event, data) {
             const {name, value} = data
-            this.dispatch({
-                type: "FORM_CHANGE_VALUE",
-                payload: {
-                    form: this.formName,
-                    name,
-                    value
-                }
-            })
+            this.value = value
+            this.dispatch(changeFormValue(this.formName, name, value))
         }
 
         render() {
             const sanitizedProps = this.sanitizedProps
-            return <Component {...sanitizedProps} onChange={this.handleChange}/>
+            return <Component {...sanitizedProps} onChange={this.handleChange} value={this.value}/>
         }
     }
 

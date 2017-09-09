@@ -40,5 +40,9 @@ class AccountingRecords(APIView):
 
 class AccountingRecordView(APIView):
     def post(self, request):
-        record, created = AccountingRecord.objects.get_or_create(**request.data)
+        record, created = AccountingRecord.objects.update_or_create(id=getId(request), defaults={**request.data})
         return Response()
+
+
+def getId(request):
+    return request.data['id'] if 'id' in request.data else None

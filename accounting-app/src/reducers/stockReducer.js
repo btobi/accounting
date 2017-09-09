@@ -4,8 +4,6 @@ const defaultState = {
 
 export default function stockReducer(state = defaultState, action) {
 
-    console.log(action);
-
     switch (action.type) {
         case "FETCH_STOCKS_PENDING": {
             console.log("PENDING")

@@ -1,7 +1,11 @@
 import React from 'react'
 import {Container, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import AccountEdit from "./masterdata-account-edit";
+import {connect} from "react-redux";
+import {fillForm} from "actions/formActions";
+import {changeFormValue} from "../../../actions/formActions";
 
+@connect()
 export default class Accounts extends React.Component {
 
     constructor() {
@@ -13,19 +17,17 @@ export default class Accounts extends React.Component {
 
     }
 
-    handleClick(data) {
-        this.setState({account: data, openModal: true})
+    fillFormData(account) {
+        this.props.dispatch(fillForm("accountEdit", account))
+        this.props.dispatch(changeFormValue("accountEdit", "_modalOpen", true))
     }
 
     render() {
 
 
         const accounts = this.props.accounts.map(a => {
-            const setAccount = () => {
-                this.handleClick(a)
-            }
             return (
-                <Table.Row key={a.number} onClick={setAccount}>
+                <Table.Row key={a.number} onClick={() => {this.fillFormData(a)}}>
                     <Table.Cell>{a.number}</Table.Cell>
                     <Table.Cell>{a.type}</Table.Cell>
                     <Table.Cell>{a.name}</Table.Cell>

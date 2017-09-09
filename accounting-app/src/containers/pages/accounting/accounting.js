@@ -25,7 +25,7 @@ export default class Accounting extends React.Component {
         return (
             <div>
                 <Container textAlign="right" fluid>
-                    <AccountingRecordNew accounts={this.props.accounts}/>
+                    <AccountingRecordNew />
                 </Container>
                 <AccountingRecords records={this.props.records}/>
             </div>

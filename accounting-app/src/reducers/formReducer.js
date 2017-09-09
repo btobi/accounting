@@ -1,30 +1,66 @@
-const defaultState = {
-    forms: []
-}
+const defaultState = {}
 
-export default function formReducer(state=defaultState, action) {
+export default function formReducer(state = defaultState, action) {
+
+    /*
+     form: name of form
+     _form: form object containing values of form elements
+     */
 
     switch (action.type) {
 
         case "FORM_CHANGE_VALUE": {
             const {form, name, value} = action.payload
 
-            if (!form) {
-                console.log("Form name is undefined");
-                return state;
+            let newState;
+
+            try {
+                newState = checkFormState(state, form)
+            } catch (e) {
+                console.log("%cNo form name set for field " + name + ".", "color: red")
+                return state
             }
 
-            if (!state.forms[form])
-                state.forms[form] = {}
+            const _form = Object.assign({}, newState[form], { [name]:  value})
+            return Object.assign({}, newState, { [form] : _form } )
+        }
 
-            const _form = state.forms[form]
-            _form[name] = value
+        case "FILL_FORM": {
+            const {form, data} = action.payload
 
-            return {...state, forms: {...state.forms, [form]: {..._form}}}
+            let newState;
+
+            try {
+                newState = checkFormState(state, form)
+            } catch (e) {
+                return state
+            }
+
+            const _form = {...newState[form], ...data}
+
+            return Object.assign({}, newState, { [form] : _form } )
         }
 
     }
 
     return state
 
+}
+
+
+let checkFormState = (state, form) => {
+    if (!form) {
+        console.log("%cNo form name is undefined", "color: red")
+        throw FormDoesNotExistException()
+    }
+
+    if (!state[form]) {
+        console.log("Form with name " + form + " is not present yet. Create!")
+        return Object.assign({}, state, { [form]: {} });
+    }
+
+    return state
+}
+
+function FormDoesNotExistException() {
 }

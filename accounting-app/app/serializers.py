@@ -18,8 +18,11 @@ class AccountSerializer(serializers.ModelSerializer):
 
 class AccountingRecordSerializer(serializers.ModelSerializer):
 
-    debit = AccountSerializer(many=False)
-    credit = AccountSerializer(many=False)
+    debit = AccountSerializer(many=False, read_only=True)
+    credit = AccountSerializer(many=False, read_only=True)
+
+    debit_id = serializers.PrimaryKeyRelatedField(many=False, queryset=Account.objects.all(), source='debit')
+    credit_id = serializers.PrimaryKeyRelatedField(many=False, queryset=Account.objects.all(), source='credit')
 
     class Meta:
         model = AccountingRecord

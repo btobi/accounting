@@ -30,6 +30,13 @@ module.exports = {
         // necessary for HMR to know where to load the hot update chunks
     },
 
+    resolve: {
+        modules: [
+            path.resolve('./src'),
+            path.resolve('./node_modules'),
+        ]
+    },
+
     devtool: 'inline-source-map',
 
     module: {
