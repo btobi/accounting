@@ -48,6 +48,14 @@ export default function formReducer(state = defaultState, action) {
 
     }
 
+    if (action.type.endsWith("REJECTED")) {
+        let newState = Object.assign({}, state)
+        for (const form in state) {
+            newState = Object.assign({}, newState, { [form]: {...state[form], _pending: false}})
+        }
+        return newState
+    }
+
     return state
 
 }

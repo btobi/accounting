@@ -47,12 +47,12 @@ class AccountingRecord(models.Model):
 
 
 class AccountingRecordBase(models.Model):
-    record = models.ForeignKey(AccountingRecord)
+    record = models.ForeignKey(AccountingRecord, related_name="record_base", on_delete=models.CASCADE)
     amount = models.FloatField()
     date = models.DateField()
     comment = models.CharField(max_length=200)
     person = models.CharField(max_length=100, null=True, default=None, blank=True)
-    isDebit = models.BooleanField()
-    isCredit = models.BooleanField()
     account = models.ForeignKey(Account, related_name="record_base_account")
     counterAccount = models.ForeignKey(Account, related_name="record_base_counteraccount")
+    isDebit = models.BooleanField()
+    isCredit = models.BooleanField()
