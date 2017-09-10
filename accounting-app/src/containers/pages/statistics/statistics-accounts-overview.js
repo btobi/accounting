@@ -62,16 +62,14 @@ export default class StatisticsAccounts extends React.Component {
 
     getRecords(account) {
         return account.records.map(r => {
-            const isDebit = r.debit.number === account.account.number
-            const counterAccount = isDebit ? r.credit : r.debit
-            const label = isDebit ? (<Label size="tiny" color="black" circular empty/>) : (
+            const label = r.isDebit ? (<Label size="tiny" color="black" circular empty/>) : (
                 <Label color="orange" circular empty/>)
             return (
                 <Table.Row key={r.id}>
                     <Table.Cell>{label}</Table.Cell>
                     <Table.Cell>{r.date}</Table.Cell>
                     <Table.Cell textAlign="right">{r.amount}</Table.Cell>
-                    <Table.Cell>{getAccountLabel(counterAccount)} &nbsp; {counterAccount.name}</Table.Cell>
+                    <Table.Cell>{getAccountLabel(r.counterAccount)} &nbsp; {r.counterAccount.name}</Table.Cell>
                 </Table.Row>
             )
         })

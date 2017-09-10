@@ -28,11 +28,6 @@ class Account(models.Model):
             return debit_sum - credit_sum
         return credit_sum - debit_sum
 
-    def get_records(self, start, end):
-        debit_entries = self.records_debit.filter(date__range=[start, end])
-        credit_entries = self.records_credit.filter(date__range=[start, end])
-        return debit_entries, credit_entries
-
 
 class AccountingRecord(models.Model):
     debit = models.ForeignKey(Account, null=False, blank=False, related_name="records_debit")
