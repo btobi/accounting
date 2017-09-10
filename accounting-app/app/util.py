@@ -29,3 +29,6 @@ def get_param(request, param, optional):
 
 def get_sum(entries):
     return 0 if len(entries) == 0 else reduce(lambda x, y: x + y, [x.amount for x in entries])
+
+def get_id(request):
+    return request.data['id'] if 'id' in request.data else None

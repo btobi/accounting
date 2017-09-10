@@ -1,6 +1,5 @@
 from django.db import models
-from . import util
-
+import app.util as util
 
 accountTypes = (
     ("EX", "EXPENSES"),
@@ -11,7 +10,7 @@ accountTypes = (
 
 
 class Account(models.Model):
-    number = models.PositiveIntegerField(primary_key=True)
+    number = models.PositiveIntegerField()
     name = models.CharField(max_length=20)
     type = models.CharField(max_length=2, choices=accountTypes)
     iban = models.CharField(max_length=28, null=True, default=None, blank=True)
@@ -26,8 +25,8 @@ class Account(models.Model):
         credit_sum = util.get_sum(credit_entries)
 
         if self.type in ["LI", "RE"]:
-            return credit_sum - debit_sum
-        return debit_sum - credit_sum
+            return debit_sum - credit_sum
+        return credit_sum - debit_sum
 
     def get_records(self, start, end):
         debit_entries = self.records_debit.filter(date__range=[start, end])
@@ -36,10 +35,8 @@ class Account(models.Model):
 
 
 class AccountingRecord(models.Model):
-    debit = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=False, blank=False,
-                              related_name="records_debit")
-    credit = models.ForeignKey(Account, on_delete=models.DO_NOTHING, null=False, blank=False,
-                               related_name="records_credit")
+    debit = models.ForeignKey(Account, null=False, blank=False, related_name="records_debit")
+    credit = models.ForeignKey(Account, null=False, blank=False, related_name="records_credit")
     amount = models.FloatField()
     date = models.DateField()
     comment = models.CharField(max_length=200)
@@ -47,3 +44,15 @@ class AccountingRecord(models.Model):
 
     def __str__(self):
         return "[{}] {} => {} || {}  \"{}\"".format(self.date, self.debit, self.credit, self.amount, self.comment)
+
+
+class AccountingRecordBase(models.Model):
+    record = models.ForeignKey(AccountingRecord)
+    amount = models.FloatField()
+    date = models.DateField()
+    comment = models.CharField(max_length=200)
+    person = models.CharField(max_length=100, null=True, default=None, blank=True)
+    isDebit = models.BooleanField()
+    isCredit = models.BooleanField()
+    account = models.ForeignKey(Account, related_name="record_base_account")
+    counterAccount = models.ForeignKey(Account, related_name="record_base_counteraccount")

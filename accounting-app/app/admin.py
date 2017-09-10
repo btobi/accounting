@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Account, AccountingRecord
+from app.models import Account, AccountingRecord, AccountingRecordBase
 
 admin.site.register(Account)
 admin.site.register(AccountingRecord)
+admin.site.register(AccountingRecordBase)

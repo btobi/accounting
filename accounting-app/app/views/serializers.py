@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Account, AccountingRecord
+from app.models import AccountingRecord, Account
 
 
 class AccountSerializer(serializers.ModelSerializer):

@@ -49,7 +49,7 @@ export default class AccountingRecordNew extends React.Component {
         const accounts = this.props.accounts.map((a) => {
             return {
                 key: a.number + " " + a.name,
-                value: a.number,
+                value: a.id,
                 text: <div>{a.number} &nbsp; {a.name}</div>,
             }
         })

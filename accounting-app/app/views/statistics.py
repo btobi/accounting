@@ -4,10 +4,10 @@ from itertools import chain
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from . import util
-from .models import *
 
-from .serializers import AccountSerializer, AccountingRecordSerializer
+import app.util
+
+from app.views.serializers import AccountSerializer, AccountingRecordSerializer
 
 
 class AccountsView(APIView):

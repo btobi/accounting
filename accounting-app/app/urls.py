@@ -1,13 +1,11 @@
-from . import statistics
-
 from django.conf.urls import url
 
-from . import views
+from app.views import accounts, records, statistics
 
 urlpatterns = [
-    url(r'^accounts/$', views.Accounts.as_view()),
-    url(r'^account/$', views.AccountView.as_view()),
-    url(r'^accounting/records/$', views.AccountingRecords.as_view()),
-    url(r'^accounting/record/$', views.AccountingRecordView.as_view()),
+    url(r'^accounts/$', accounts.Accounts.as_view()),
+    url(r'^account/$', accounts.AccountView.as_view()),
+    url(r'^accounting/records/$', records.AccountingRecords.as_view()),
+    url(r'^accounting/record/$', records.AccountingRecordView.as_view()),
     url(r'^statistics/accounts/$', statistics.AccountsView.as_view())
 ]
