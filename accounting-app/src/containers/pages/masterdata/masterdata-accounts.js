@@ -4,18 +4,10 @@ import AccountEdit from "./masterdata-account-edit";
 import {connect} from "react-redux";
 import {fillForm} from "actions/formActions";
 import {changeFormValue} from "../../../actions/formActions";
+import MasterdataAccountsMenu from "./masterdata-accounts.menu";
 
 @connect()
 export default class Accounts extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {
-            account: {},
-            openModal: false
-        }
-
-    }
 
     fillFormData(account) {
         this.props.dispatch(fillForm("accountEdit", account))
@@ -24,34 +16,29 @@ export default class Accounts extends React.Component {
 
     render() {
 
-
         const accounts = this.props.accounts.map(a => {
             return (
-                <Table.Row key={a.number} onClick={() => {
-                    this.fillFormData(a)
-                }}>
+                <Table.Row key={a.number}>
                     <Table.Cell>{a.number}</Table.Cell>
                     <Table.Cell>{a.type}</Table.Cell>
                     <Table.Cell>{a.name}</Table.Cell>
                     <Table.Cell>{a.iban}</Table.Cell>
+                    <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {this.fillFormData(a)}}><Icon name="pencil"/></a></Table.Cell>
                 </Table.Row>
             )
         });
 
-
         return (
-
             <div>
-                <Menu>
-                    <AccountEdit account={this.state.account} open={this.state.openModal}/>
-                </Menu>
-                <Table celled selectable>
+                <MasterdataAccountsMenu />
+                <Table>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Kontennummer</Table.HeaderCell>
                             <Table.HeaderCell>Typ</Table.HeaderCell>
                             <Table.HeaderCell>Bezeichnung</Table.HeaderCell>
                             <Table.HeaderCell>IBAN</Table.HeaderCell>
+                            <Table.HeaderCell/>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>

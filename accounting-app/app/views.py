@@ -4,22 +4,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Stock, Account, AccountingRecord
-from .serializers import StockSerializer, AccountSerializer, AccountingRecordSerializer
+from .models import Account, AccountingRecord
+from .serializers import AccountSerializer, AccountingRecordSerializer
 
 from . import util
-
-from dateutil.relativedelta import relativedelta
-
-
-class StockList(APIView):
-    def get(self, request):
-        stocks = Stock.objects.all()
-        serializer = StockSerializer(stocks, many=True)
-        return Response(serializer.data)
-
-    def post(self):
-        pass
 
 
 class Accounts(APIView):
@@ -62,7 +50,6 @@ class AccountingRecordView(APIView):
 
 def get_id(request):
     return request.data['id'] if 'id' in request.data else None
-
 
 # def pages(request, query_set):
 #     page = request.data.page

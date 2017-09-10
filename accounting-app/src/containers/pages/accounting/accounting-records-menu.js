@@ -8,9 +8,6 @@ import {getAccountingRecords} from "actions/accountingActions";
 export default class AccountingRecordsMenu extends React.Component {
 
     lastMonth() {
-
-        console.log(this.props)
-
         this.props.dispatch(getAccountingRecords({
             year: this.props.year,
             month: this.props.month,

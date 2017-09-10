@@ -2,16 +2,6 @@ from django.db import models
 from . import util
 
 
-class Stock(models.Model):
-    ticker = models.CharField(max_length=10)
-    open = models.FloatField()
-    close = models.FloatField()
-    volume = models.IntegerField()
-
-    def __str__(self):
-        return self.ticker
-
-
 accountTypes = (
     ("EX", "EXPENSES"),
     ("RE", "REVENUE"),

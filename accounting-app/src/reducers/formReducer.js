@@ -41,6 +41,11 @@ export default function formReducer(state = defaultState, action) {
             return Object.assign({}, newState, { [form] : _form } )
         }
 
+        case "CLEAR_FORM": {
+            const form = action.payload
+            return Object.assign({}, state, { [form]: {} } )
+        }
+
     }
 
     return state

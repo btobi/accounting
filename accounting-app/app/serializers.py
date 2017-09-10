@@ -1,13 +1,6 @@
 from rest_framework import serializers
 
-from .models import Stock, Account, AccountingRecord
-
-
-class StockSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Stock
-        fields = '__all__'
-        # fields = ('ticker', 'volume')
+from .models import Account, AccountingRecord
 
 
 class AccountSerializer(serializers.ModelSerializer):

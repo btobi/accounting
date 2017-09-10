@@ -15,3 +15,10 @@ export function changeFormValue(form, name, value) {
         }
     }
 }
+
+export function clearForm(form) {
+    return {
+        type: "CLEAR_FORM",
+        payload: form
+    }
+}

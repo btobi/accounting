@@ -6,6 +6,7 @@ import FormModal from "components/FormModal";
 import XForm from "components/XForm"
 import {fillForm} from "actions/formActions"
 import {changeFormValue} from "actions/formActions";
+import {clearForm} from "../../../actions/formActions";
 
 
 @connect((store) => {
@@ -38,6 +39,10 @@ export default class AccountingRecordNew extends React.Component {
 
     close = () => this.props.dispatch(changeFormValue(this.formName, "_modalOpen", false))
     open = () => this.props.dispatch(changeFormValue(this.formName, "_modalOpen", true))
+    newEntry = () => {
+        this.props.dispatch(clearForm(this.formName))
+        this.open()
+    }
 
     render() {
 
@@ -60,7 +65,7 @@ export default class AccountingRecordNew extends React.Component {
 
         return (
             <div>
-                <Menu.Item onClick={this.open}>Neuer Buchungssatz</Menu.Item>
+                <Menu.Item onClick={this.newEntry}>Neuer Buchungssatz</Menu.Item>
                 <FormModal title="Neuen Buchungssatz anlegen" open={open} handleSubmit={this.handleSubmit}
                            button="Speichern" icon="save" close={this.close.bind(this)} pending={pending}>
                     <XForm.Input name="id" form={formName} type="hidden"/>
