@@ -41,14 +41,23 @@ class AccountsView(APIView):
 
 class Spreadsheet(APIView):
     def get(self, request):
-
-        base = AccountingRecordBase.objects.all()
+        base = AccountingRecordBase.objects.order_by("date").all()
 
         data = AccountingRecordBaseSerializer(base, many=True).data
 
+        for d in data:
+            print(d['date'])
+
         df = pd.DataFrame.from_dict(data)
 
+        column_order = [[i for i in range(1, 13)]]
+
         table = pivot_table(df, values='amount',
-                    index=['accountType', 'accountName', 'accountId', 'accountNumber'], columns=['monthyear'])
+                            index=['accountType', 'accountName', 'accountId', 'accountNumber'], columns=['month'],
+                            aggfunc=pd.np.sum).cumsum(axis=1)
+
+        table = table.reindex_axis(column_order, axis=1)
+
+        table = table.reindex_axis([["AS", "LI", "RE", "EX"]], axis=0, level=0)
 
         return Response(pd.json.loads(table.to_json(orient='split')))

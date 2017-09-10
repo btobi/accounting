@@ -3,16 +3,18 @@ import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import {connect} from "react-redux";
 import {getSpreadsheetData} from "../../../actions/statisticsActions";
 import {getAccountLabel} from "../../util/commons";
+import {setPageTitle} from "../../../actions/pageActions";
 
 @connect((store) => {
     return {
         spreadsheet: store.statistics.spreadsheet
     }
 })
-export default class Spreadsheet extends React.Component {
+export default class StatisticsSpreadsheet extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(getSpreadsheetData())
+        this.props.dispatch(setPageTitle("Bilanz", "Jahresübersicht", "table"))
     }
 
     spreadsheet() {
@@ -37,7 +39,7 @@ export default class Spreadsheet extends React.Component {
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell/>
-                        {columns.map((c) => (<Table.HeaderCell textAlign="right">{c}</Table.HeaderCell>))}
+                        {columns.map((c) => (<Table.HeaderCell textAlign="right" width={1}>{c}</Table.HeaderCell>))}
                     </Table.Row>
                 </Table.Header>
 
@@ -46,7 +48,7 @@ export default class Spreadsheet extends React.Component {
                         return (
                             <Table.Row>
                                 <Table.Cell>{getAccountLabel({type: r.index[0], number: r.index[3]})} &nbsp; {r.index[1]}</Table.Cell>
-                                {r.data.map((d) => (<Table.Cell textAlign="right">{d}</Table.Cell>))}
+                                {r.data.map((d) => (<Table.Cell textAlign="right">{d < 0 ? (<div style={{color: 'red'}}>{d}</div>) : d}</Table.Cell>))}
                             </Table.Row>
                         )})
                     }

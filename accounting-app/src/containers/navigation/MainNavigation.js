@@ -16,8 +16,12 @@ export default class MainNavigation extends Component {
                     FINANCE<br />MASTER
                     <br />
                 </Menu.Item>
+                <Menu.Item as={NavLink} to='/statistics/spreadsheet'>
+                    <Icon name="table"/>
+                    Spreadsheet
+                </Menu.Item>
                 <Menu.Item as={NavLink} to='/statistics/accounts'>
-                    <Icon name="pie chart"/>
+                    <Icon name="list"/>
                     Kontenübersicht
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/accounting/records/'>

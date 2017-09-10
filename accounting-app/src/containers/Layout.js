@@ -7,6 +7,7 @@ import Masterdata from "containers/pages/masterdata/masterdata";
 import Accounting from "containers/pages/accounting/accounting";
 import LoadDefaults from "containers/util/LoadDefaults";
 import StatisticsAccounts from "containers/pages/statistics/statistics-accounts-overview";
+import StatisticsSpreadsheet from "./pages/statistics/statistics-spreadsheet";
 
 export default class Layout extends React.Component {
 
@@ -23,6 +24,7 @@ export default class Layout extends React.Component {
                             <Route path='/masterdata' component={Masterdata}/>
                             <Route path='/accounting/records' component={Accounting} />
                             <Route path='/statistics/accounts' component={StatisticsAccounts} />
+                            <Route path='/statistics/spreadsheet' component={StatisticsSpreadsheet} />
                             <Route render={() => <h1>Not found</h1>}/>
                         </Switch>
                     </div>

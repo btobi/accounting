@@ -19,6 +19,11 @@ export default class AccountingRecords extends React.Component {
         this.formName = "recordEdit"
     }
 
+    copy(record) {
+        const {id, ...recordCopy} = record
+        this.fillFormData(recordCopy)
+    }
+
     fillFormData(record) {
         this.props.dispatch(fillForm(this.formName, record))
         this.props.dispatch(changeFormValue(this.formName, "_modalOpen", true))
@@ -43,6 +48,7 @@ export default class AccountingRecords extends React.Component {
                 <Table.Cell>{a.comment}</Table.Cell>
                 <Table.Cell>{a.person}</Table.Cell>
                 <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {this.fillFormData(a)}}><Icon name="pencil"/></a></Table.Cell>
+                <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {this.copy(a)}}><Icon name="copy"/></a></Table.Cell>
                 <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {this.deleteRecord(a)}}><Icon name="trash outline"/></a></Table.Cell>
             </Table.Row>
         ));
@@ -68,6 +74,7 @@ export default class AccountingRecords extends React.Component {
                                 <Table.HeaderCell>Betrag</Table.HeaderCell>
                                 <Table.HeaderCell>Kommentar</Table.HeaderCell>
                                 <Table.HeaderCell>Person</Table.HeaderCell>
+                                <Table.HeaderCell/>
                                 <Table.HeaderCell/>
                                 <Table.HeaderCell/>
                             </Table.Row>

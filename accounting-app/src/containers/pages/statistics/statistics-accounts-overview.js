@@ -109,11 +109,6 @@ export default class StatisticsAccounts extends React.Component {
 
         return (
             <div>
-
-                <Spreadsheet />
-
-                <Divider />
-
                 {this.getSection("AS", "Aktiva")}
                 {this.getSection("LI", "Passiva")}
                 {this.getSection("RE", "Ertragskonten")}
