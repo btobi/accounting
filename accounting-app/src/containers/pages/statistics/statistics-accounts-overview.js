@@ -2,7 +2,7 @@ import React from "react"
 import {connect} from "react-redux";
 
 import {getAccountsStatistics} from "actions/statisticsActions"
-import {Container, Divider, Grid, Label, Menu, Segment, Table} from "semantic-ui-react";
+import {Container, Divider, Grid, Header, Label, Menu, Segment, Table} from "semantic-ui-react";
 import {getAccountColor, getAccountLabel} from "../../util/commons";
 import {setPageTitle} from "../../../actions/pageActions";
 
@@ -15,13 +15,22 @@ import {setPageTitle} from "../../../actions/pageActions";
 export default class StatisticsAccounts extends React.Component {
 
     componentWillMount() {
-        console.log("statistics", this.props.statistics)
         this.props.dispatch(getAccountsStatistics())
         this.props.dispatch(setPageTitle("Kontenübersicht", "Auflistung nach Kontentyp", "pie chart"))
     }
 
+    getTotalOfType(type) {
+        let total = 0
+        this.getAccountsOfType(type).forEach((a) => total += a.total)
+        return total
+    }
+
     getAccountsOfType(type) {
-        const accounts = this.props.accounts.filter((a) => a.account.type === type).map(a => {
+        return this.props.accounts.filter((a) => a.account.type === type)
+    }
+
+    renderAccountsOfType(type) {
+        const accounts = this.getAccountsOfType(type).map(a => {
             return (
                 <Grid.Column computer={4} tablet={8} mobile={16} key={a.account.id}>
                     <Table color={getAccountColor(a.account.type)} attached="top">
@@ -75,26 +84,34 @@ export default class StatisticsAccounts extends React.Component {
         })
     }
 
+    getLabelForTotal(type) {
+        return (
+            <span>
+                &nbsp; &nbsp; <Label basic color={getAccountColor(type)}>{this.getTotalOfType(type)}</Label>
+            </span>
+        )
+    }
 
-    render() {
+    getSection(type, headline) {
         return (
             <div>
-                <h2>Aktiva</h2>
+                <Header color={getAccountColor(type)} as="h3">{headline} {this.getLabelForTotal(type)}</Header>
                 <Grid columns={2}>
-                    {this.getAccountsOfType("AS")}
+                    {this.renderAccountsOfType(type)}
                 </Grid>
-                <h2>Passiva</h2>
-                <Grid columns={2}>
-                    {this.getAccountsOfType("LI")}
-                </Grid>
-                <h2>Ertragskonten</h2>
-                <Grid columns={2}>
-                    {this.getAccountsOfType("RE")}
-                </Grid>
-                <h2>Aufwandskonten</h2>
-                <Grid columns={2}>
-                    {this.getAccountsOfType("EX")}
-                </Grid>
+                <Divider />
+            </div>
+        )
+    }
+
+    render() {
+
+        return (
+            <div>
+                {this.getSection("AS", "Aktiva")}
+                {this.getSection("LI", "Passiva")}
+                {this.getSection("RE", "Ertragskonten")}
+                {this.getSection("EX", "Aufwandskonten")}
             </div>
         )
     }
