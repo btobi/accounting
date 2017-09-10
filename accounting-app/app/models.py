@@ -1,4 +1,6 @@
 from django.db import models
+from django_pandas.managers import DataFrameManager
+
 import app.util as util
 
 accountTypes = (
@@ -51,3 +53,34 @@ class AccountingRecordBase(models.Model):
     counterAccount = models.ForeignKey(Account, related_name="record_base_counteraccount")
     isDebit = models.BooleanField()
     isCredit = models.BooleanField()
+
+    @property
+    def month(self):
+        return self.date.month
+
+    @property
+    def year(self):
+        return self.date.year
+
+    @property
+    def monthyear(self):
+        return str(self.date.month) + " / " + str(self.date.year)
+
+    @property
+    def accountName(self):
+        return self.account.name
+
+    @property
+    def accountType(self):
+        return self.account.type
+
+    @property
+    def accountNumber(self):
+        return self.account.number
+
+    @property
+    def accountId(self):
+        return self.account.id
+
+
+    objects = DataFrameManager()

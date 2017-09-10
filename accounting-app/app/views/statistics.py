@@ -1,10 +1,11 @@
 from functools import reduce
 from itertools import chain
 
+import pandas as pd
 from django.db.models import Q
+from pandas import pivot_table
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 
 import app.util
 from app import util
@@ -21,11 +22,10 @@ class AccountsView(APIView):
         response = []
 
         for account in accounts:
-
-            records = AccountingRecordBase.objects.filter(Q(account=account))\
+            records = AccountingRecordBase.objects.filter(Q(account=account)) \
                 .filter(date__range=[start, end]).order_by("-date").all()
 
-            records_until_now = AccountingRecordBase.objects.filter(Q(account=account))\
+            records_until_now = AccountingRecordBase.objects.filter(Q(account=account)) \
                 .filter(date__lt=end).order_by("-date").all()
 
             total = util.get_sum(records_until_now)
@@ -38,3 +38,17 @@ class AccountsView(APIView):
 
         return Response(response)
 
+
+class Spreadsheet(APIView):
+    def get(self, request):
+
+        base = AccountingRecordBase.objects.all()
+
+        data = AccountingRecordBaseSerializer(base, many=True).data
+
+        df = pd.DataFrame.from_dict(data)
+
+        table = pivot_table(df, values='amount',
+                    index=['accountType', 'accountName', 'accountId', 'accountNumber'], columns=['monthyear'])
+
+        return Response(pd.json.loads(table.to_json(orient='split')))

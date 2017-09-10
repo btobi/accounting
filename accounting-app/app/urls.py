@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^account/$', accounts.AccountView.as_view()),
     url(r'^accounting/records/$', records.AccountingRecords.as_view()),
     url(r'^accounting/record/$', records.AccountingRecordView.as_view()),
-    url(r'^statistics/accounts/$', statistics.AccountsView.as_view())
+    url(r'^statistics/accounts/$', statistics.AccountsView.as_view()),
+    url(r'^statistics/spreadsheet/$', statistics.Spreadsheet.as_view())
 ]

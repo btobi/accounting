@@ -5,6 +5,7 @@ import {getAccountsStatistics} from "actions/statisticsActions"
 import {Container, Divider, Grid, Header, Label, Menu, Segment, Table} from "semantic-ui-react";
 import {getAccountColor, getAccountLabel} from "../../util/commons";
 import {setPageTitle} from "../../../actions/pageActions";
+import Spreadsheet from "./statistics-spreadsheet";
 
 @connect((store) => {
     return {
@@ -32,7 +33,7 @@ export default class StatisticsAccounts extends React.Component {
     renderAccountsOfType(type) {
         const accounts = this.getAccountsOfType(type).map(a => {
             return (
-                <Grid.Column computer={4} tablet={8} mobile={16} key={a.account.id}>
+                <Grid.Column computer={8} tablet={8} mobile={16} key={a.account.id}>
                     <Table color={getAccountColor(a.account.type)} attached="top">
                         <Table.Header>
                             <Table.Row>
@@ -108,6 +109,11 @@ export default class StatisticsAccounts extends React.Component {
 
         return (
             <div>
+
+                <Spreadsheet />
+
+                <Divider />
+
                 {this.getSection("AS", "Aktiva")}
                 {this.getSection("LI", "Passiva")}
                 {this.getSection("RE", "Ertragskonten")}

@@ -6,3 +6,10 @@ export function getAccountsStatistics(data = {year: null, month: null, get_next:
         payload: Http.post("/statistics/accounts", data)
     }
 }
+
+export function getSpreadsheetData() {
+    return {
+        type: "GET_SPREADSHEET",
+        payload: Http.get("/statistics/spreadsheet")
+    }
+}

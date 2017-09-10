@@ -30,6 +30,14 @@ class AccountingRecordBaseSerializer(serializers.ModelSerializer):
     account_id = serializers.PrimaryKeyRelatedField(many=False, queryset=Account.objects.all(), source='account')
     counterAccount_id = serializers.PrimaryKeyRelatedField(many=False, queryset=Account.objects.all(), source='counterAccount')
 
+    month = serializers.ReadOnlyField()
+    year = serializers.ReadOnlyField()
+    accountType = serializers.ReadOnlyField()
+    accountName = serializers.ReadOnlyField()
+    accountId = serializers.ReadOnlyField()
+    accountNumber = serializers.ReadOnlyField()
+    monthyear = serializers.ReadOnlyField()
+
     class Meta:
         model = AccountingRecordBase
         fields = '__all__'
