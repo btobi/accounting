@@ -47,8 +47,8 @@ export default class AccountEdit extends React.Component {
         const types = [
             {type: "EX", label: "Aufwand"},
             {type: "RE", label: "Ertrag"},
-            {type: "AS", label: "Aktiv"},
-            {type: "LI", label: "Passiv"},
+            {type: "AS", label: "Aktivum"},
+            {type: "LI", label: "Passivum"},
         ]
 
         const typeList = types.map((a) => {
