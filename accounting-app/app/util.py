@@ -18,7 +18,7 @@ def get_month_range(request):
     if get_previous:
         start = start - relativedelta(months=1)
 
-    end = start + relativedelta(months=1)
+    end = start + relativedelta(months=1) - relativedelta(days=1)
 
     return start, end
 

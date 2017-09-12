@@ -18,10 +18,12 @@ class AccountsView(APIView):
     def post(self, request):
         start, end = util.get_month_range(request)
 
-        accounts = Account.objects.all()
-        response = []
+        print(start, end)
 
-        for account in accounts:
+        accounts_db = Account.objects.all()
+        accounts = []
+
+        for account in accounts_db:
             records = AccountingRecordBase.objects.filter(Q(account=account)) \
                 .filter(date__range=[start, end]).order_by("-date").all()
 
@@ -30,13 +32,17 @@ class AccountsView(APIView):
 
             total = util.get_sum(records_until_now)
 
-            response.append({
+            accounts.append({
                 'total': total,
                 'account': AccountSerializer(account).data,
                 'records': AccountingRecordBaseSerializer(records, many=True).data
             })
 
-        return Response(response)
+        return Response({
+            'accounts': accounts,
+            'year': start.year,
+            'month': start.month
+        })
 
 
 class Spreadsheet(APIView):
@@ -44,9 +50,6 @@ class Spreadsheet(APIView):
         base = AccountingRecordBase.objects.order_by("date").all()
 
         data = AccountingRecordBaseSerializer(base, many=True).data
-
-        for d in data:
-            print(d['date'])
 
         df = pd.DataFrame.from_dict(data)
 
