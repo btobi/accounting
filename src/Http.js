@@ -1,5 +1,5 @@
 import axios from "axios"
-const API_PATH = "http://localhost:8080/api";
+const API_PATH = "/api";
 
 axios.defaults.headers = {
     ...axios.defaults.headers,
