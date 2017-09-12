@@ -1,14 +1,14 @@
 import React from 'react'
 import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import {connect} from "react-redux";
-import AccountingRecordNew from "./accounting-record-new";
 import {getAccountingRecords} from "actions/accountingActions";
+import {getAccountsStatistics} from "actions/statisticsActions"
 
 @connect()
-export default class AccountingRecordsMenu extends React.Component {
+export default class StatisticsAccountsMenu extends React.Component {
 
     lastMonth() {
-        this.props.dispatch(getAccountingRecords({
+        this.props.dispatch(getAccountsStatistics({
             year: this.props.year,
             month: this.props.month,
             previous: true
@@ -16,7 +16,7 @@ export default class AccountingRecordsMenu extends React.Component {
     }
 
     nextMonth() {
-        this.props.dispatch(getAccountingRecords({
+        this.props.dispatch(getAccountsStatistics({
             year: this.props.year,
             month: this.props.month,
             next: true
@@ -26,9 +26,6 @@ export default class AccountingRecordsMenu extends React.Component {
     render() {
         return (
             <Menu>
-
-                <AccountingRecordNew />
-
                 <Menu.Menu position='right'>
                     <Menu.Item header>{this.props.month} / {this.props.year}</Menu.Item>
                     <Menu.Item icon="chevron left" onClick={this.lastMonth.bind(this)}/>

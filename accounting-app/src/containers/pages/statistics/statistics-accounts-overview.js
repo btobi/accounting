@@ -5,12 +5,13 @@ import {getAccountsStatistics} from "actions/statisticsActions"
 import {Container, Divider, Grid, Header, Label, Menu, Segment, Table} from "semantic-ui-react";
 import {getAccountColor, getAccountLabel} from "../../util/commons";
 import {setPageTitle} from "../../../actions/pageActions";
-import Spreadsheet from "./statistics-spreadsheet";
+import StatisticsAccountsMenu from "./statistics-accounts-menu";
 
 @connect((store) => {
     return {
-        accounts: store.statistics.accounts,
-        statistics: store.statistics
+        accounts: store.statistics.accounts.accounts,
+        year: store.statistics.accounts.year,
+        month: store.statistics.accounts.month,
     }
 })
 export default class StatisticsAccounts extends React.Component {
@@ -109,6 +110,9 @@ export default class StatisticsAccounts extends React.Component {
 
         return (
             <div>
+
+                <StatisticsAccountsMenu year={this.props.year} month={this.props.month} />
+
                 {this.getSection("AS", "Aktiva")}
                 {this.getSection("LI", "Passiva")}
                 {this.getSection("RE", "Ertragskonten")}

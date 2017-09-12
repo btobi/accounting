@@ -1,5 +1,9 @@
 const defaultState = {
-    accounts: [],
+    accounts: {
+        year: null,
+        month: null,
+        accounts: []
+    },
     spreadsheet: {
         columns: [],
         data: [],

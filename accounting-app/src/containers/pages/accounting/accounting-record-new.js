@@ -13,6 +13,7 @@ import {clearForm} from "../../../actions/formActions";
     return {
         accounts: store.masterdata.accounts,
         record: store.forms.recordEdit,
+        recordData: store.accounting.records,
     }
 })
 export default class AccountingRecordNew extends React.Component {
@@ -33,7 +34,10 @@ export default class AccountingRecordNew extends React.Component {
             .then(() => {
                 this.close()
                 this.props.dispatch(changeFormValue(this.formName, "_pending", false))
-                this.props.dispatch(getAccountingRecords())
+                this.props.dispatch(getAccountingRecords({
+                    year: this.props.recordData.year,
+                    month: this.props.recordData.month,
+                }))
             })
     }
 
@@ -72,9 +76,9 @@ export default class AccountingRecordNew extends React.Component {
                     <h3>Konten</h3>
                     <Form.Group widths="equal">
                         <XForm.Dropdown label="Soll" placeholder="Konto - Soll" selection options={accounts}
-                                       name="debit_id" form={formName}/>
+                                        name="debit_id" form={formName}/>
                         <XForm.Dropdown label="Haben" placeholder="Konto - Haben" selection options={accounts}
-                                       name="credit_id" form={formName}/>
+                                        name="credit_id" form={formName}/>
                     </Form.Group>
                     <h3>Info</h3>
                     <Form.Group widths="equal">
