@@ -63,6 +63,7 @@
     "babel-plugin-lodash": "^3.2.11",
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.7",
+    "django-react-csrftoken": "^1.0.2",
     "eslint": "^3.14.1",
     "eslint-plugin-react": "^6.9.0",
     "react-logger": "^1.1.0",
