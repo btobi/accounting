@@ -1,0 +1,6 @@
+FROM nginx:latest
+
+WORKDIR .
+
+ADD ./accounting-app/dist ./dist
+ADD ./nginx/conf /etc/nginx/conf.d

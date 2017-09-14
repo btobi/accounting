@@ -1,12 +1,12 @@
 FROM python:3
 
 WORKDIR .
-ADD requirements.txt .
-RUN pip install -r requirements.txt
 
-ADD . .
+ADD ./accounting-app/requirements.txt .
+
+RUN pip install -r requirements.txt
 
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE 'dj.settings.production'
 
-VOLUME /dist
+ADD ./accounting-app .

@@ -1,9 +1,8 @@
-.babelrc
-.eslintrc
-.gitignore
-index.html
-package.json
-webpack.config.js
-webpack.config.production.js
-node_modules
-src
+accounting-app/.babelrc
+accounting-app/.eslintrc
+accounting-app/index.html
+accounting-app/package.json
+accounting-app/webpack.config.js
+accounting-app/webpack.config.production.js
+accounting-app/node_modules
+accounting-app/src

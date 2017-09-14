@@ -1,12 +1,9 @@
 version: '2'
 services:
   accounting-nginx:
-    image: nginx:latest
+    image: btobias92/accounting-nginx:latest
     ports:
       - "8000:8000"
-    volumes:
-      - staticfiles:/dist
-      - ./configs/nginx:/etc/nginx/conf.d
     depends_on:
       - accounting-py
   accounting-py:
@@ -14,11 +11,7 @@ services:
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"
     depends_on:
       - accounting-db
-    volumes:
-      - staticfiles:/dist
     expose:
       - "8000"
   accounting-db:
     image: postgres:latest
-volumes:
-  staticfiles: {}
