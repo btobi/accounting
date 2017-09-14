@@ -1,5 +1,9 @@
 from dj.settings.base import *
 
+VERSION = '1.0.2'
+
+print("VERSION {}".format(VERSION))
+
 print("Enabling production profile...")
 
 DEBUG = False
