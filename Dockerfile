@@ -8,3 +8,5 @@ ADD . .
 
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE 'dj.settings.production'
+
+VOLUME /dist
