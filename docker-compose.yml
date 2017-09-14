@@ -11,13 +11,13 @@ services:
     depends_on:
       - web
   web:
-    build: .
+    image: btobias92/accounting:1.0
     container_name: dg01
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"
     depends_on:
       - db
     volumes:
-      - ./src:/src
+      - ./dist:/dist
     expose:
       - "8000"
 

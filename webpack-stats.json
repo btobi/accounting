@@ -1,1 +1,18 @@
-{"status":"done","publicPath":"static/","chunks":{"main":[{"name":"bundle.js","publicPath":"static/bundle.js","path":"/home/tobi/Developer/accounting/dist/bundle.js"},{"name":"bundle.js.map","publicPath":"static/bundle.js.map","path":"/home/tobi/Developer/accounting/dist/bundle.js.map"}]}}
+{
+  "status": "done",
+  "publicPath": "/static/",
+  "chunks": {
+    "main": [
+      {
+        "name": "bundle.js",
+        "publicPath": "/static/bundle.js",
+        "path": "/home/tobi/Developer/accounting/dist/bundle.js"
+      },
+      {
+        "name": "bundle.js.map",
+        "publicPath": "/static/bundle.js.map",
+        "path": "/home/tobi/Developer/accounting/dist/bundle.js.map"
+      }
+    ]
+  }
+}
