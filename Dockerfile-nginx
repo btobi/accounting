@@ -2,6 +2,6 @@ FROM nginx:latest
 
 WORKDIR .
 
-ADD ./accounting-app/dist ./dist
-ADD ./accounting-app/static ./static
+ADD ./accounting-app/dist /dist
+ADD ./accounting-app/static /static
 ADD ./nginx /etc/nginx

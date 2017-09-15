@@ -8,6 +8,7 @@ accountTypes = (
     ("RE", "REVENUE"),
     ("AS", "ASSET"),
     ("LI", "LIABILITY"),
+    ("OP", "OPENING")
 )
 
 
@@ -84,3 +85,9 @@ class AccountingRecordBase(models.Model):
 
 
     objects = DataFrameManager()
+
+
+class Setting(models.Model):
+    key = models.CharField(primary_key=True, max_length=20)
+    value = models.TextField()
+

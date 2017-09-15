@@ -1,13 +1,18 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from app.models import Account
+from app.models import Account, Setting
 from app.views.serializers import AccountSerializer
 
 
 class Accounts(APIView):
     def get(self, request):
-        data = AccountSerializer(Account.objects.all(), many=True).data
+        setting = Setting.objects.get(key="showOpenings")
+        if setting and setting.value == "True":
+            types = ["AS", "LI", "RE", "EX", "OP"]
+        else:
+            types = ["AS", "LI", "RE", "EX"]
+        data = AccountSerializer(Account.objects.filter(type__in=types).all(), many=True).data
         return Response(data)
 
 
