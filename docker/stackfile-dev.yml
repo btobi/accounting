@@ -28,5 +28,5 @@ accounting-dev-py:
   restart: always
 
 
-#  volumes:
-#    - '/usr/lib/docker/volumes/accounting-dev/nginx/conf:/etc/nginx/conf.d'
+  volumes:
+    - '/usr/lib/docker/volumes/accounting-dev/nginx/conf:/etc/nginx/conf.d'

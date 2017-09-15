@@ -5,7 +5,7 @@ VERSION = '1.0.2'
 
 print("Enabling production profile...")
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['accounting-py', 'localhost', 'accounting-prd-py', 'accounting-dev-py']
 

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "lint": "eslint src",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf static/app",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
     "postbuild": "copyfiles index.html dist"
   },

@@ -8,8 +8,8 @@ module.exports = {
 
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/static/'
+        path: path.resolve(__dirname, 'static', 'app'),
+        publicPath: '/static/app/'
     },
 
     devtool: 'source-map',

@@ -1,19 +1,18 @@
 version: '2'
 services:
   accounting-dev-nginx:
-    image: btobias92/accounting-nginx:latest
+    image: nginx:latest
     ports:
       - "8000:8000"
-    links:
-      - "accounting-dev-py:accounting-py"
   accounting-dev-py:
     image: btobias92/accounting:latest
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"
     links:
       - "accounting-dev-db:accounting-db"
     expose:
       - "8000"
     restart: on-failure
+    volumes:
+      - './staticdata:/staticmount'
   accounting-dev-db:
     image: "skalera/postgres:latest"
     ports:
