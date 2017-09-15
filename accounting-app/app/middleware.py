@@ -26,6 +26,9 @@ class AuthenticationMiddleware(object):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
 
+        if request.path.startswith(reverse('admin:index')):
+            return self.get_response(request)
+
         if request.path.startswith(reverse('login')):
             return self.get_response(request)
 

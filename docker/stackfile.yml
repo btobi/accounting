@@ -19,11 +19,9 @@ accounting-nginx:
   volumes_from:
     - accounting-py
 accounting-py:
+  image: 'btobias92/accounting:latest'
   command: 'bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"'
   expose:
     - '8000'
-  image: 'btobias92/accounting:latest'
   links:
     - accounting-db
-  volumes:
-    - /dist
