@@ -1,0 +1,12 @@
+haproxy:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - 'accounting-dev-nginx.accounting-dev:accounting-dev'
+  ports:
+    - '80:80'
+    - '443:443'
+  restart: always
+  roles:
+    - global
+  tags:
+    - proxy
