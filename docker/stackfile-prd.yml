@@ -1,0 +1,25 @@
+accounting-prd-db:
+  environment:
+    - POSTGRES_DB=finance
+    - POSTGRES_PASSWORD=finance
+    - POSTGRES_USER=finance
+  image: 'skalera/postgres:latest'
+  ports:
+    - '5432:5432'
+  volumes:
+    - '/usr/lib/docker/volumes/accounting-prd/postgres-data:/var/lib/postgresql/data'
+accounting-prd-nginx:
+  image: 'btobias92/accounting-nginx:latest'
+  links:
+    - accounting-prd-py:accounting-py
+  ports:
+    - '8000:8000'
+  volumes:
+    - '/usr/lib/docker/volumes/accounting-prd/nginx/conf:/etc/nginx/conf.d'
+accounting-prd-py:
+  command: 'bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"'
+  expose:
+    - '8000'
+  image: 'btobias92/accounting:latest'
+  links:
+    - accounting-prd-db:accounting-db

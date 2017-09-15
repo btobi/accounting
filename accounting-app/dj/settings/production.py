@@ -8,7 +8,7 @@ print("Enabling production profile...")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['accounting-py', 'localhost']
+ALLOWED_HOSTS = ['accounting-py', 'localhost', 'accounting-prd-py', 'accounting-dev-py']
 
 DATABASES = {
     'default': {
@@ -16,7 +16,7 @@ DATABASES = {
         'NAME': 'finance',
         'USER': 'finance',
         'PASSWORD': 'finance',
-        'HOST': 'accounting-db',
+        'HOST': 'accounting-prd-db',
         'PORT': 5432,
     }
 }

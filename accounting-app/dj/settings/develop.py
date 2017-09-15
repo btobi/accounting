@@ -4,7 +4,7 @@ print("Enabling develop profile...")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['web', 'localhost']
+ALLOWED_HOSTS = ['localhost']
 
 DATABASES = {
     'default': {
