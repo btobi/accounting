@@ -45,14 +45,26 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.middleware.AuthenticationMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
 ROOT_URLCONF = 'dj.urls'
+
+print(os.path.join(BASE_DIR, '../../../templates'))
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
+        'DIRS': [os.path.join(BASE_DIR, '../templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -105,12 +117,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../../dist'),
+    os.path.join(BASE_DIR, '../dist'),
 )
 
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': '/',
-        'STATS_FILE': os.path.join(BASE_DIR, '../../webpack-stats.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, '../webpack-stats.json'),
     }
 }

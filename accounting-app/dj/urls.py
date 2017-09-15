@@ -20,6 +20,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
+    url(r'^user/*', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/*', include('app.urls', namespace='api', app_name='app')),
     url(r'^(?P<path>.*)/$', TemplateView.as_view(template_name='index.html')),

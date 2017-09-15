@@ -25,6 +25,7 @@ export default class Layout extends React.Component {
                             <Route path='/accounting/records' component={Accounting} />
                             <Route path='/statistics/accounts' component={StatisticsAccounts} />
                             <Route path='/statistics/spreadsheet' component={StatisticsSpreadsheet} />
+                            <Route path='/' component={Accounting} />
                             <Route render={() => <h1>Not found</h1>}/>
                         </Switch>
                     </div>

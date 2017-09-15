@@ -13,8 +13,9 @@ ALLOWED_HOSTS = ['accounting-py', 'localhost']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'NAME': 'finance',
+        'USER': 'finance',
+        'PASSWORD': 'finance',
         'HOST': 'accounting-db',
         'PORT': 5432,
     }

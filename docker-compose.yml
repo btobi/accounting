@@ -14,4 +14,12 @@ services:
     expose:
       - "8000"
   accounting-db:
-    image: postgres:latest
+    image: "skalera/postgres:latest"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "finance"
+      POSTGRES_PASSWORD: "finance"
+      POSTGRES_DB: "finance"
+    volumes:
+      - './postgres-data:/var/lib/postgresql/data'

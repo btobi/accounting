@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+</head>
+<body style="background-color: #DADADA;">
+
+<div class="ui middle aligned center aligned grid" style="height: 100%;">
+    <div class="column" style="max-width: 450px;">
+        <h2 class="ui teal image header">
+            <div class="content">
+                Login
+            </div>
+        </h2>
+
+        <form class="ui large form" method="post">
+            <div class="ui stacked segment">
+
+                {{ form.non_field_errors }}
+
+                {% csrf_token %}
+
+                <div class="field">
+                    {{ form.username.errors }}
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" placeholder="username">
+                    </div>
+                </div>
+                <div class="field">
+                    {{ form.password.errors }}
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <button type="submit" class="ui fluid large teal submit button">Login</button>
+            </div>
+
+            <div class="ui error message"></div>
+
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
