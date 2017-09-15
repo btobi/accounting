@@ -14,8 +14,8 @@ accounting-dev-nginx:
     - 'accounting-dev-py:accounting-py'
   expose:
     - '8000'
-  volumes:
-    - '/usr/lib/docker/volumes/accounting-dev/nginx/conf:/etc/nginx/conf.d'
+#  volumes:
+#    - '/usr/lib/docker/volumes/accounting-dev/nginx/conf:/etc/nginx/conf.d'
   environment:
     - 'VIRTUAL_HOST=http://fin.tobiasbodor.de'
 accounting-dev-py:

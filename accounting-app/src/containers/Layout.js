@@ -8,15 +8,21 @@ import Accounting from "containers/pages/accounting/accounting";
 import LoadDefaults from "containers/util/LoadDefaults";
 import StatisticsAccounts from "containers/pages/statistics/statistics-accounts-overview";
 import StatisticsSpreadsheet from "./pages/statistics/statistics-spreadsheet";
+import * as MobileDetect from "mobile-detect";
 
 export default class Layout extends React.Component {
 
     render() {
+
+        const isMobile = new MobileDetect(window.navigator.userAgent).mobile()
+
+        const style1 = !isMobile ? {marginLeft: '10rem'} : {}
+
         return (
             <div>
                 <LoadDefaults/>
                 <MainNavigation/>
-                <div style={{marginLeft: '10rem'}}>
+                <div style={style1}>
                     <div style={{padding: '1rem'}}>
                         <PageTitle title={this.title}/>
                         <Switch>
