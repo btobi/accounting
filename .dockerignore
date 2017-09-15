@@ -7,3 +7,4 @@ accounting-app/webpack.config.production.js
 accounting-app/node_modules
 accounting-app/src
 accounting-app/dist
+accounting-app/app/migrations
