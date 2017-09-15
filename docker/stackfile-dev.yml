@@ -26,3 +26,7 @@ accounting-dev-py:
   links:
     - 'accounting-dev-db:accounting-db'
   restart: always
+
+
+#  volumes:
+#    - '/usr/lib/docker/volumes/accounting-dev/nginx/conf:/etc/nginx/conf.d'
