@@ -1,19 +1,20 @@
 version: '2'
 services:
-  accounting-nginx:
+  accounting-dev-nginx:
     image: btobias92/accounting-nginx:latest
     ports:
       - "8000:8000"
-    depends_on:
-      - accounting-py
-  accounting-py:
+    links:
+      - "accounting-dev-py:accounting-py"
+  accounting-dev-py:
     image: btobias92/accounting:latest
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"
-    depends_on:
-      - accounting-db
+    links:
+      - "accounting-dev-db:accounting-db"
     expose:
       - "8000"
-  accounting-db:
+    restart: on-failure
+  accounting-dev-db:
     image: "skalera/postgres:latest"
     ports:
       - "5432:5432"
@@ -22,4 +23,4 @@ services:
       POSTGRES_PASSWORD: "finance"
       POSTGRES_DB: "finance"
     volumes:
-      - './postgres-data:/var/lib/postgresql/data'
+      - '/usr/lib/docker/dev/accounting/postgres-data:/var/lib/postgresql/data'
