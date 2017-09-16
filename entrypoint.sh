@@ -21,6 +21,7 @@ fi
 cp -a /nginx/. /${WORKING_DIR}/
 
 python manage.py makemigrations
+python manage.py makemigrations app
 python manage.py migrate
 
 cat <<EOF | python manage.py shell
