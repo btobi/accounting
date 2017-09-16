@@ -4,25 +4,31 @@ accounting-prd-db:
     - 'POSTGRES_PASSWORD=finance'
     - 'POSTGRES_USER=finance'
   image: 'skalera/postgres:latest'
-  ports:
-    - '5432:5432'
+  expose:
+    - '5432'
   volumes:
     - '/usr/lib/docker/volumes/accounting-prd/postgres-data:/var/lib/postgresql/data'
 accounting-prd-nginx:
-  image: 'btobias92/accounting-nginx:latest'
+  image: nginx:latest
+  ports:
+    - "8000"
+  volumes:
+    - '/usr/lib/docker/volumes/accounting-prd/static:/var/www/static'
+    - '/usr/lib/docker/volumes/accounting-prd/nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
   links:
     - 'accounting-prd-py:accounting-py'
-  ports:
-    - '80:8000'
-  volumes:
-    - '/usr/lib/docker/volumes/accounting-prd/nginx/conf:/etc/nginx/conf.d'
   environment:
     - 'VIRTUAL_HOST=http://fin.tobiasbodor.de'
+  roles:
+    - global
+  restart: always
 accounting-prd-py:
-  command: 'bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn dj.wsgi -b 0.0.0.0:8000"'
+  image: 'btobias92/accounting:0.1'
   expose:
-    - '8000'
-  image: 'btobias92/accounting:latest'
+    - '8080'
   links:
     - 'accounting-prd-db:accounting-db'
   restart: always
+  volumes:
+    - '/usr/lib/docker/volumes/accounting-prd/static:/staticmount'
+    - '/usr/lib/docker/volumes/accounting-prd/nginx:/nginxmount'
