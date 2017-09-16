@@ -9,8 +9,8 @@ fi
 
 cp -a /static/. /${WORKING_DIR}/
 
-rm -r /static
-
+echo Static files:
+echo $(ls staticmount)
 
 WORKING_DIR='nginxmount'
 
@@ -29,4 +29,4 @@ User.objects.filter(username="admin").exists() or \
     User.objects.create_superuser("admin", "admin@example.com", "admin123")
 EOF
 
-gunicorn dj.wsgi -b 0.0.0.0:8000
+gunicorn dj.wsgi -b 0.0.0.0:8080

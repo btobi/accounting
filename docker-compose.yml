@@ -4,6 +4,12 @@ services:
     image: nginx:latest
     ports:
       - "8000:8000"
+    volumes:
+      - './static:/var/www/static'
+      - './nginx/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf'
+    links:
+      - 'accounting-dev-py:accounting-py'
+    restart: always
   accounting-dev-py:
     image: btobias92/accounting:latest
     links:
@@ -12,7 +18,8 @@ services:
       - "8000"
     restart: on-failure
     volumes:
-      - './staticdata:/staticmount'
+      - './static:/staticmount'
+      - './nginx:/nginxmount'
   accounting-dev-db:
     image: "skalera/postgres:latest"
     ports:
