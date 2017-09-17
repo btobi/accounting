@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getSpreadsheetData} from "../../../actions/statisticsActions";
 import {getAccountLabel} from "../../util/commons";
 import {setPageTitle} from "../../../actions/pageActions";
+import {number} from "helpers"
 
 @connect((store) => {
     return {
@@ -48,7 +49,7 @@ export default class StatisticsSpreadsheet extends React.Component {
                         return (
                             <Table.Row>
                                 <Table.Cell>{getAccountLabel({type: r.index[0], number: r.index[3]})} &nbsp; {r.index[1]}</Table.Cell>
-                                {r.data.map((d) => (<Table.Cell textAlign="right">{d < 0 ? (<div style={{color: 'red'}}>{d}</div>) : d}</Table.Cell>))}
+                                {r.data.map((d) => (<Table.Cell textAlign="right">{d < 0 ? (<div style={{color: 'red'}}>{number(d)}</div>) : number(d)}</Table.Cell>))}
                             </Table.Row>
                         )})
                     }

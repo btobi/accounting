@@ -7,6 +7,7 @@ import XForm from "components/XForm"
 import {fillForm} from "actions/formActions"
 import {changeFormValue} from "actions/formActions";
 import {clearForm} from "../../../actions/formActions";
+import moment from "moment";
 
 
 @connect((store) => {
@@ -65,7 +66,11 @@ export default class AccountingRecordNew extends React.Component {
         if (this.props.record) {
             open = this.props.record._modalOpen
             pending = this.props.record._pending
+            if (!this.props.record.date)
+                this.props.record.date = moment().format("YYYY-MM-DD")
         }
+
+
 
         return (
             <div>

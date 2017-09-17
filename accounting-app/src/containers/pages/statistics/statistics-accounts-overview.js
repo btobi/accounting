@@ -6,6 +6,7 @@ import {Container, Divider, Grid, Header, Label, Menu, Segment, Table} from "sem
 import {getAccountColor, getAccountLabel} from "../../util/commons";
 import {setPageTitle} from "../../../actions/pageActions";
 import StatisticsAccountsMenu from "./statistics-accounts-menu";
+import {number} from "../../../helpers";
 
 @connect((store) => {
     return {
@@ -40,7 +41,7 @@ export default class StatisticsAccounts extends React.Component {
                             <Table.Row>
                                 <Table.HeaderCell>{getAccountLabel(a.account)}</Table.HeaderCell>
                                 <Table.HeaderCell>{a.account.name}</Table.HeaderCell>
-                                <Table.HeaderCell textAlign="right">{a.total} &euro;</Table.HeaderCell>
+                                <Table.HeaderCell textAlign="right">{number(a.total)} &euro;</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body/>
@@ -79,7 +80,7 @@ export default class StatisticsAccounts extends React.Component {
                 <Table.Row key={r.id}>
                     <Table.Cell>{label}</Table.Cell>
                     <Table.Cell>{r.date}</Table.Cell>
-                    <Table.Cell textAlign="right">{r.amount}</Table.Cell>
+                    <Table.Cell textAlign="right">{number(r.amount)}</Table.Cell>
                     <Table.Cell>{getAccountLabel(r.counterAccount)} &nbsp; {r.counterAccount.name}</Table.Cell>
                 </Table.Row>
             )
@@ -89,7 +90,7 @@ export default class StatisticsAccounts extends React.Component {
     getLabelForTotal(type) {
         return (
             <span>
-                &nbsp; &nbsp; <Label basic color={getAccountColor(type)}>{this.getTotalOfType(type)}</Label>
+                &nbsp; &nbsp; <Label color="black">{number(this.getTotalOfType(type))} &euro;</Label>
             </span>
         )
     }

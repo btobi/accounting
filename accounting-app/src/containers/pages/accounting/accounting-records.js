@@ -6,6 +6,7 @@ import {changeFormValue} from "actions/formActions";
 import {deleteAccountingRecord} from "actions/accountingActions";
 import {getAccountingRecords} from "../../../actions/accountingActions";
 import {getAccountColor, getAccountLabel} from "../../util/commons";
+import {number} from "helpers"
 
 @connect((store) => {
     return {
@@ -44,7 +45,7 @@ export default class AccountingRecords extends React.Component {
                 <Table.Cell>{a.debit.name}</Table.Cell>
                 <Table.Cell width="1">{getAccountLabel(a.credit)}</Table.Cell>
                 <Table.Cell>{a.credit.name}</Table.Cell>
-                <Table.Cell textAlign="right">{a.amount}</Table.Cell>
+                <Table.Cell textAlign="right">{number(a.amount)}</Table.Cell>
                 <Table.Cell>{a.comment}</Table.Cell>
                 <Table.Cell>{a.person}</Table.Cell>
                 <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {this.fillFormData(a)}}><Icon name="pencil"/></a></Table.Cell>

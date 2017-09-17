@@ -9,7 +9,7 @@ INSTALLED_APPS.append(
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../dist'),
+    os.path.join(BASE_DIR, '../../dist'),
 )
 
 DEBUG = True
