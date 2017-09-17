@@ -4,5 +4,5 @@ export function number(number) {
 }
 
 export function round(number, digits) {
-    return Math.round(number * 10 ^ digits) / 10 ^ digits
+    return Math.round(number * Math.pow(10, digits)) / Math.pow(10, digits)
 }
