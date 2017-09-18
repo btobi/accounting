@@ -1,5 +1,6 @@
 export function number(number) {
-    console.log(number)
+    if (!number || number === 0)
+        return ""
     return round(number, 2).toLocaleString("de-DE", { minimumFractionDigits: 2 })
 }
 
