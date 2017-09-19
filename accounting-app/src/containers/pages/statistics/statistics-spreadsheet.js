@@ -21,18 +21,11 @@ export default class StatisticsSpreadsheet extends React.Component {
     spreadsheet() {
 
         const spreadsheet = this.props.spreadsheet
-        const columns = spreadsheet.columns
-        const data = spreadsheet.data
-        const index = spreadsheet.index
 
-        const rows = []
+        const columns = []
 
-        for (let i in index) {
-            rows.push({
-                index: index[i],
-                data: data[i]
-            })
-        }
+        for (let i = 1; i <= 12; i++)
+            columns.push(i)
 
         return (
             <Table definition>
@@ -45,11 +38,11 @@ export default class StatisticsSpreadsheet extends React.Component {
                 </Table.Header>
 
                 <Table.Body>
-                    {rows.map((r) => {
+                    {spreadsheet.map((r) => {
                         return (
                             <Table.Row>
-                                <Table.Cell>{getAccountLabel({type: r.index[0], number: r.index[3]})} &nbsp; {r.index[1]}</Table.Cell>
-                                {r.data.map((d) => (<Table.Cell textAlign="right">{d < 0 ? (<div style={{color: 'red'}}>{number(d)}</div>) : number(d)}</Table.Cell>))}
+                                <Table.Cell>{getAccountLabel({type: r.accountType, number: r.accountNumber})} &nbsp; {r.accountName}</Table.Cell>
+                                {columns.map((c) => r[String(c)]).map((val) => (<Table.Cell textAlign="right">{val < 0 ? (<div style={{color: 'red'}}>{number(val)}</div>) : number(val)}</Table.Cell>))}
                             </Table.Row>
                         )})
                     }

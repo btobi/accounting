@@ -4,11 +4,7 @@ const defaultState = {
         month: null,
         accounts: []
     },
-    spreadsheet: {
-        columns: [],
-        data: [],
-        index: []
-    }
+    spreadsheet: []
 }
 
 export default function statisticsReducer(state=defaultState, action) {

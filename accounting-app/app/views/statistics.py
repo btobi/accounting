@@ -1,6 +1,7 @@
 from functools import reduce
 from itertools import chain
 
+import numpy
 import pandas as pd
 from django.db.models import Q
 from pandas import pivot_table
@@ -44,6 +45,8 @@ class AccountsView(APIView):
             'month': start.month
         })
 
+indices = ['accountType', 'accountName', 'accountId', 'accountNumber']
+column_order = [[i for i in range(1, 13)]]
 
 class Spreadsheet(APIView):
     def get(self, request):
@@ -53,14 +56,40 @@ class Spreadsheet(APIView):
 
         df = pd.DataFrame.from_dict(data)
 
-        column_order = [[i for i in range(1, 13)]]
+        table1 = get_table(df, ["AS", "LI"], True)
+        table2 = get_table(df, ["EX", "RE"], False)
 
-        table = pivot_table(df, values='amount',
-                            index=['accountType', 'accountName', 'accountId', 'accountNumber'], columns=['month'],
-                            aggfunc=pd.np.sum).cumsum(axis=1)
+        print("=========")
 
-        table = table.reindex_axis(column_order, axis=1)
+        print(table1)
+        print(table2)
 
-        table = table.reindex_axis([["AS", "LI", "RE", "EX"]], axis=0, level=0)
+        table1.reset_index(inplace=True)
+        table2.reset_index(inplace=True)
 
-        return Response(pd.json.loads(table.to_json(orient='split')))
+        cols = [i for i in range(1, 13)] + indices
+
+        table = pd.merge(table1, table2, 'outer', on=cols)
+
+        print("=========")
+
+        print(table)
+
+        return Response(pd.json.loads(table.to_json(orient='records')))
+
+
+def get_table(df, cols, cum_sum):
+    df = df[df["accountType"].isin(cols)]
+
+    table = pivot_table(df, values='amount', index=indices,
+                        columns=['month'], aggfunc=pd.np.sum)
+
+    if cum_sum:
+        table = table.cumsum(axis=1)
+
+    table = table.reindex_axis(column_order, axis=1)
+
+    table = table.reindex_axis([["AS", "LI", "RE", "EX"]], axis=0, level=0)
+
+    return table
+
