@@ -31,7 +31,10 @@ class AccountsView(APIView):
             records_until_now = AccountingRecordBase.objects.filter(Q(account=account)) \
                 .filter(date__lt=end).order_by("-date").all()
 
-            total = util.get_sum(records_until_now)
+            if account.type in ["AS", "LI"]:
+                total = util.get_sum(records_until_now)
+            else:
+                total = util.get_sum(records)
 
             accounts.append({
                 'total': total,
@@ -60,21 +63,12 @@ class Spreadsheet(APIView):
         table1 = get_table(df, ["AS", "LI"], True)
         table2 = get_table(df, ["EX", "RE"], False)
 
-        print("=========")
-
-        print(table1)
-        print(table2)
-
         table1.reset_index(inplace=True)
         table2.reset_index(inplace=True)
 
         cols = [i for i in range(1, 13)] + indices
 
         table = pd.merge(table1, table2, 'outer', on=cols)
-
-        print("=========")
-
-        print(table)
 
         return Response(pd.json.loads(table.to_json(orient='records')))
 
