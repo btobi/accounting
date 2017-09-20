@@ -16,13 +16,23 @@ export default class Layout extends React.Component {
 
         const isMobile = new MobileDetect(window.navigator.userAgent).mobile()
 
-        const style1 = !isMobile ? {marginLeft: '10rem'} : {}
+        const mobileStyle = !isMobile ? {marginLeft: '10rem'} : {}
+
+        let profileStyle = {}
+
+        switch(window.applicationProfile) {
+            case "local":
+                profileStyle = {borderTop: '3px solid red'}
+                break;
+            case "develop":
+                profileStyle = {borderTop: '3px solid green'}
+        }
 
         return (
-            <div>
+            <div style={profileStyle}>
                 <LoadDefaults/>
                 <MainNavigation/>
-                <div style={style1}>
+                <div style={mobileStyle}>
                     <div style={{padding: '1rem'}}>
                         <PageTitle title={this.title}/>
                         <Switch>

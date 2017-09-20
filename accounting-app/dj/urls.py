@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from rest_framework.urlpatterns import format_suffix_patterns
 
+from app.views.index import IndexView
 
 urlpatterns = [
     url(r'^user/*', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/*', include('app.urls', namespace='api', app_name='app')),
-    url(r'^(?P<path>.*)/$', TemplateView.as_view(template_name='index.html')),
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^(?P<path>.*)/$', IndexView.as_view()),
+    url(r'^$', IndexView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -1,13 +1,11 @@
 # noinspection PyUnresolvedReferences
 from dj.settings.base import *
 
-VERSION = '1.0.2'
+DEBUG = False
 
-print("Enabling production profile...")
+PROFILE = "production"
 
-DEBUG = True
-
-ALLOWED_HOSTS = ['accounting-py', 'localhost', 'accounting-prd-py', 'accounting-dev-py']
+ALLOWED_HOSTS = ['accounting-py', 'localhost', 'accounting-prd-py']
 
 DATABASES = {
     'default': {

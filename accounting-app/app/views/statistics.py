@@ -48,6 +48,7 @@ class AccountsView(APIView):
 indices = ['accountType', 'accountName', 'accountId', 'accountNumber']
 column_order = [[i for i in range(1, 13)]]
 
+
 class Spreadsheet(APIView):
     def get(self, request):
         base = AccountingRecordBase.objects.order_by("date").all()

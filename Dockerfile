@@ -7,7 +7,6 @@ ADD ./accounting-app/requirements.txt .
 RUN pip install -r requirements.txt
 
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE 'dj.settings.production'
 
 ADD ./accounting-app .
 

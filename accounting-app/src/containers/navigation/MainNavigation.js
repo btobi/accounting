@@ -8,10 +8,15 @@ export default class MainNavigation extends Component {
     render() {
 
         const isMobile = new MobileDetect(window.navigator.userAgent).mobile()
+        const mobileStyle = isMobile ? {marginTop: 0} : {}
+
+        const style = {
+            ...mobileStyle,
+        }
 
         return (
             <Menu vertical fluid={isMobile} fixed={!isMobile ? 'left' : ''}
-                  icon='labeled' style={isMobile ? {marginTop: 0} : {}}>
+                  icon='labeled' style={style}>
                 <Menu.Item header>
                     <br />
                     <Icon name="protect"/>
