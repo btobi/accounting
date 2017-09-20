@@ -14,7 +14,7 @@ account_no = itertools.count(1)
 
 
 def make_demo_data():
-    if not settings.DEBUG:
+    if settings.PROFILE == "production" and settings.PROFILE not in ["local", "develop"]:
         return
 
     Account.objects.all().delete()
