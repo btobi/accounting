@@ -7,7 +7,6 @@
     "lint": "eslint src",
     "prebuild": "rimraf static/app",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
-    "postbuild": "copyfiles index.html dist"
   },
   "repository": {
     "type": "git",

@@ -24,6 +24,8 @@ accounting-prd-nginx:
   restart: always
 accounting-prd-py:
   image: 'btobias92/accounting:0.1'
+  environment:
+    - DJANGO_SETTINGS_MODULE=dj.settings.develop
   expose:
     - '8080'
   links:
