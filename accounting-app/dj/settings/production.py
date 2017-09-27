@@ -1,7 +1,7 @@
 # noinspection PyUnresolvedReferences
 from dj.settings.base import *
 
-DEBUG = False
+DEBUG = True
 
 PROFILE = "production"
 
