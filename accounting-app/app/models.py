@@ -14,7 +14,7 @@ accountTypes = (
 
 class Account(models.Model):
     number = models.PositiveIntegerField()
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     type = models.CharField(max_length=2, choices=accountTypes)
     iban = models.CharField(max_length=28, null=True, default=None, blank=True)
 
