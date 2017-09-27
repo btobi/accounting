@@ -31,6 +31,10 @@ export default class MainNavigation extends Component {
                     <Icon name="list"/>
                     Kontenübersicht
                 </Menu.Item>
+                {/*<Menu.Item as={NavLink} to='/statistics/third'>*/}
+                    {/*<Icon name="money"/>*/}
+                    {/*Forderungen<br />Verbindlichkeiten*/}
+                {/*</Menu.Item>*/}
                 <Menu.Item as={NavLink} to='/accounting/records/'>
                     <Icon name="terminal"/>
                     Buchungssätze
