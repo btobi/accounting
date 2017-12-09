@@ -12,17 +12,7 @@
     "type": "git",
     "url": "https://github.com/gaearon/react-hot-boilerplate.git"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
+  "keywords": [],
   "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
   "license": "MIT",
   "bugs": {
@@ -78,6 +68,7 @@
     "style-loader": "^0.18.2",
     "webpack-bundle-tracker": "^0.2.0",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "react-redux-forms": "file:../../react-redux-forms"
   }
 }

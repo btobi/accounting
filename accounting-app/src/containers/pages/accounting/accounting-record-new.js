@@ -4,9 +4,7 @@ import {connect} from "react-redux";
 import {getAccountingRecords, postAccountingRecord} from "actions/accountingActions"
 import FormModal from "components/FormModal";
 import XForm from "components/XForm"
-import {fillForm} from "actions/formActions"
-import {changeFormValue} from "actions/formActions";
-import {clearForm} from "../../../actions/formActions";
+import { FormActions } from "react-redux-forms";
 import moment from "moment";
 
 
@@ -21,20 +19,20 @@ export default class AccountingRecordNew extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleSubmit = this.submit.bind(this)
-        this.formName = "recordEdit"
-        this.props.dispatch(changeFormValue(this.formName, "_pending", false))
+        this.handleSubmit = this.submit.bind(this);
+        this.formName = "recordEdit";
+        this.props.dispatch(FormActions.changeFormValue(this.formName, "_pending", false));
         close()
     }
 
     submit(event, data) {
-        event.preventDefault()
-        this.props.dispatch(changeFormValue(this.formName, "_pending", true))
-        const {_modalOpen, _pending, debit, credit, ...record} = this.props.record
+        event.preventDefault();
+        this.props.dispatch(FormActions.changeFormValue(this.formName, "_pending", true));
+        const {_modalOpen, _pending, debit, credit, ...record} = this.props.record;
         this.props.dispatch(postAccountingRecord(record))
             .then(() => {
-                this.close()
-                this.props.dispatch(changeFormValue(this.formName, "_pending", false))
+                this.close();
+                this.props.dispatch(FormActions.changeFormValue(this.formName, "_pending", false));
                 this.props.dispatch(getAccountingRecords({
                     year: this.props.recordData.year,
                     month: this.props.recordData.month,
@@ -42,12 +40,12 @@ export default class AccountingRecordNew extends React.Component {
             })
     }
 
-    close = () => this.props.dispatch(changeFormValue(this.formName, "_modalOpen", false))
-    open = () => this.props.dispatch(changeFormValue(this.formName, "_modalOpen", true))
+    close = () => this.props.dispatch(FormActions.changeFormValue(this.formName, "_modalOpen", false));
+    open = () => this.props.dispatch(FormActions.changeFormValue(this.formName, "_modalOpen", true));
     newEntry = () => {
-        this.props.dispatch(clearForm(this.formName))
+        this.props.dispatch(FormActions.clearForm(this.formName));
         this.open()
-    }
+    };
 
     render() {
 
@@ -57,15 +55,15 @@ export default class AccountingRecordNew extends React.Component {
                 value: a.id,
                 text: <div>{a.number} &nbsp; {a.name}</div>,
             }
-        })
+        });
 
-        const formName = this.formName
+        const formName = this.formName;
         let open = false;
         let pending = false;
 
         if (this.props.record) {
-            open = this.props.record._modalOpen
-            pending = this.props.record._pending
+            open = this.props.record._modalOpen;
+            pending = this.props.record._pending;
             if (!this.props.record.date)
                 this.props.record.date = moment().format("YYYY-MM-DD")
         }

@@ -1,9 +1,9 @@
 import React from "react"
 
 import Accounts from "./masterdata-accounts"
-import {setPageTitle} from "../../../actions/pageActions";
-import {connect} from "react-redux";
-import {getAccounts} from "../../../actions/masterdataActions"
+import { setPageTitle } from "actions/pageActions";
+import { connect } from "react-redux";
+import { getAccounts } from "actions/masterdataActions"
 
 @connect((store) => {
     return {

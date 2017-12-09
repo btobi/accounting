@@ -46,8 +46,8 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react'],
-                    plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties', 'lodash'],
+                    presets: ['babel-preset-react', 'babel-preset-stage-2'].map(require.resolve),
+                    plugins: ['babel-plugin-react-html-attrs', 'babel-plugin-transform-decorators-legacy', 'babel-plugin-transform-class-properties', 'babel-plugin-lodash'].map(require.resolve),
                 }
             },
             {

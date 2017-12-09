@@ -2,16 +2,15 @@ import React from 'react'
 import {Container, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import AccountEdit from "./masterdata-account-edit";
 import {connect} from "react-redux";
-import {fillForm} from "actions/formActions";
-import {changeFormValue} from "../../../actions/formActions";
+import { FormActions} from "react-redux-forms";
 import MasterdataAccountsMenu from "./masterdata-accounts.menu";
 
 @connect()
 export default class Accounts extends React.Component {
 
     fillFormData(account) {
-        this.props.dispatch(fillForm("accountEdit", account))
-        this.props.dispatch(changeFormValue("accountEdit", "_modalOpen", true))
+        this.props.dispatch(FormActions.fillForm("accountEdit", account))
+        this.props.dispatch(FormActions.changeFormValue("accountEdit", "_modalOpen", true))
     }
 
     render() {
