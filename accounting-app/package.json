@@ -43,7 +43,6 @@
     "cross-env": "^3.1.4",
     "file-loader": "^0.11.2",
     "lodash": "^4.17.4",
-    "prop-types": "latest",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
@@ -51,7 +50,11 @@
     "rimraf": "^2.6.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.72.0",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0",
+    "webpack-bundle-tracker": "^0.2.0",
+    "prop-types": "latest"
   },
   "dependencies": {
     "axios": "^0.16.2",

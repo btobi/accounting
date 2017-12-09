@@ -8,3 +8,4 @@ accounting-app/node_modules
 accounting-app/src
 accounting-app/dist
 accounting-app/app/migrations
+virtual-env
