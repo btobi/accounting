@@ -4,3 +4,5 @@ npm-debug.log
 *.swp
 .idea
 virtual-env
+db.sqlite3
+accounting-app/app/migrations
