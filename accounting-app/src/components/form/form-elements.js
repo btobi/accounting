@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { withFormState } from 'react-redux-forms'
+import withFormState from './form-hoc'
 
 class CommonDropdown extends React.Component {
     render() {

@@ -4,7 +4,7 @@ const defaultState = {
         end: '',
         data: []
     },
-}
+};
 
 export default function accountingReducer(state=defaultState, action) {
 
@@ -14,7 +14,7 @@ export default function accountingReducer(state=defaultState, action) {
             console.log({
                 ...state,
                 ...action.payload.data
-            })
+            });
             return {
                 ...state,
                 records: {...action.payload.data}

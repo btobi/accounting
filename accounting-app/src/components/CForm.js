@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types';
 import { Dimmer, Form, Loader } from 'semantic-ui-react';
 
 export default class CForm extends React.Component {
@@ -17,3 +17,7 @@ export default class CForm extends React.Component {
     }
 
 }
+
+CForm.propTypes = {
+    name: PropTypes.string,
+};

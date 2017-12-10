@@ -18,7 +18,6 @@ export default class Masterdata extends React.Component {
 
     render() {
 
-
         return (
             <Accounts accounts={this.props.accounts} />
         )

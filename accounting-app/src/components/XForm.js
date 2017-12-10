@@ -5,4 +5,5 @@ class XForm {};
 XForm.Input = FormInput;
 XForm.Dropdown = FormDropdown;
 
-export default XForm
+
+export default XForm;

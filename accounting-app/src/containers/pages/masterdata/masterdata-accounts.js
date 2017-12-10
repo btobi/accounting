@@ -1,20 +1,24 @@
 import React from 'react'
-import {Container, Icon, Label, Menu, Table} from 'semantic-ui-react'
+import {Icon, Menu, Table} from 'semantic-ui-react'
 import AccountEdit from './masterdata-account-edit';
-import {connect} from 'react-redux';
-import { FormActions} from 'react-redux-forms';
-import MasterdataAccountsMenu from './masterdata-accounts.menu';
+import AccountForm from '../../../components/forms/AccountForm';
 
-@connect()
 export default class Accounts extends React.Component {
 
+    constructor() {
+        super();
+        this.form = new AccountForm();
+    }
+
+    componentWillMount() {
+    }
+
     fillFormData(account) {
-        this.props.dispatch(FormActions.fillForm('accountEdit', account));
-        this.props.dispatch(FormActions.changeFormValue('accountEdit', '_modalOpen', true))
+        this.form.fillData(account);
+        this.form.setValue('_modalOpen', true);
     }
 
     render() {
-
         const accounts = this.props.accounts.map(a => {
             return (
                 <Table.Row key={a.number}>
@@ -22,14 +26,18 @@ export default class Accounts extends React.Component {
                     <Table.Cell>{a.type}</Table.Cell>
                     <Table.Cell>{a.name}</Table.Cell>
                     <Table.Cell>{a.iban}</Table.Cell>
-                    <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {this.fillFormData(a)}}><Icon name="pencil"/></a></Table.Cell>
+                    <Table.Cell selectable textAlign="center"><a href="javascript:" onClick={() => {
+                        this.fillFormData(a)
+                    }}><Icon name="pencil"/></a></Table.Cell>
                 </Table.Row>
             )
         });
 
         return (
             <div>
-                <MasterdataAccountsMenu />
+                <Menu>
+                    <AccountEdit form={this.form} />
+                </Menu>
                 <Table>
                     <Table.Header>
                         <Table.Row>

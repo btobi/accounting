@@ -4,12 +4,12 @@ import { Route, Switch } from 'react-router-dom';
 import PageTitle from 'components/PageTitle';
 import Masterdata from 'containers/pages/masterdata/masterdata';
 
-import Accounting from 'containers/pages/accounting/accounting';
+// import Accounting from 'containers/pages/accounting/accounting';
 import LoadDefaults from 'containers/util/LoadDefaults';
-import StatisticsAccounts from 'containers/pages/statistics/statistics-accounts-overview';
-import StatisticsSpreadsheet from './pages/statistics/statistics-spreadsheet';
+// import StatisticsAccounts from 'containers/pages/statistics/statistics-accounts-overview';
+// import StatisticsSpreadsheet from './pages/statistics/statistics-spreadsheet';
 import * as MobileDetect from 'mobile-detect';
-import StatisticsThirdParties from './pages/statistics/statistics-thirdparties';
+// import StatisticsThirdParties from './pages/statistics/statistics-thirdparties';
 
 export default class Layout extends React.Component {
 
@@ -39,11 +39,11 @@ export default class Layout extends React.Component {
                         <Switch>
                             {/*<Route path='/home' component={Home}/>*/}
                             <Route path='/masterdata' component={Masterdata}/>
-                            <Route path='/accounting/records' component={Accounting} />
-                            <Route path='/statistics/accounts' component={StatisticsAccounts} />
-                            <Route path='/statistics/spreadsheet' component={StatisticsSpreadsheet} />
-                            <Route path='/statistics/third' component={StatisticsThirdParties} />
-                            <Route path='/' component={Accounting} />
+                            {/*<Route path='/accounting/records' component={Accounting} />*/}
+                            {/*<Route path='/statistics/accounts' component={StatisticsAccounts} />*/}
+                            {/*<Route path='/statistics/spreadsheet' component={StatisticsSpreadsheet} />*/}
+                            {/*<Route path='/statistics/third' component={StatisticsThirdParties} />*/}
+                            {/*<Route path='/' component={Accounting} />*/}
                             <Route render={() => <h1>Not found</h1>}/>
                         </Switch>
                     </div>
