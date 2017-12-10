@@ -1,31 +1,31 @@
-import React from "react";
-import MainNavigation from "containers/navigation/MainNavigation";
-import {Route, Switch} from "react-router-dom";
-import PageTitle from "components/PageTitle";
-import Masterdata from "containers/pages/masterdata/masterdata";
+import React from 'react';
+import MainNavigation from 'containers/navigation/MainNavigation';
+import { Route, Switch } from 'react-router-dom';
+import PageTitle from 'components/PageTitle';
+import Masterdata from 'containers/pages/masterdata/masterdata';
 
-import Accounting from "containers/pages/accounting/accounting";
-import LoadDefaults from "containers/util/LoadDefaults";
-import StatisticsAccounts from "containers/pages/statistics/statistics-accounts-overview";
-import StatisticsSpreadsheet from "./pages/statistics/statistics-spreadsheet";
-import * as MobileDetect from "mobile-detect";
-import StatisticsThirdParties from "./pages/statistics/statistics-thirdparties";
+import Accounting from 'containers/pages/accounting/accounting';
+import LoadDefaults from 'containers/util/LoadDefaults';
+import StatisticsAccounts from 'containers/pages/statistics/statistics-accounts-overview';
+import StatisticsSpreadsheet from './pages/statistics/statistics-spreadsheet';
+import * as MobileDetect from 'mobile-detect';
+import StatisticsThirdParties from './pages/statistics/statistics-thirdparties';
 
 export default class Layout extends React.Component {
 
     render() {
 
-        const isMobile = new MobileDetect(window.navigator.userAgent).mobile()
+        const isMobile = new MobileDetect(window.navigator.userAgent).mobile();
 
-        const mobileStyle = !isMobile ? {marginLeft: '10rem'} : {}
+        const mobileStyle = !isMobile ? {marginLeft: '10rem'} : {};
 
-        let profileStyle = {}
+        let profileStyle = {};
 
         switch(window.applicationProfile) {
-            case "local":
-                profileStyle = {borderTop: '3px solid red'}
+            case 'local':
+                profileStyle = {borderTop: '3px solid red'};
                 break;
-            case "develop":
+            case 'develop':
                 profileStyle = {borderTop: '3px solid green'}
         }
 

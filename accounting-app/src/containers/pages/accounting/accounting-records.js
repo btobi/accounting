@@ -1,11 +1,11 @@
 import React from 'react'
 import {Button, Dimmer, Icon, Label, Loader, Menu, Modal, Segment, Table} from 'semantic-ui-react'
-import {connect} from "react-redux";
-import {deleteAccountingRecord} from "actions/accountingActions";
-import {getAccountingRecords} from "../../../actions/accountingActions";
-import {getAccountColor, getAccountLabel} from "../../util/commons";
-import { FormActions } from "react-redux-forms";
-import {number} from "helpers"
+import {connect} from 'react-redux';
+import {deleteAccountingRecord} from 'actions/accountingActions';
+import {getAccountingRecords} from '../../../actions/accountingActions';
+import {getAccountColor, getAccountLabel} from '../../util/commons';
+import { FormActions } from 'react-redux-forms';
+import {number} from 'helpers'
 
 @connect((store) => {
     return {
@@ -16,7 +16,7 @@ export default class AccountingRecords extends React.Component {
 
     constructor(props) {
         super(props);
-        this.formName = "recordEdit"
+        this.formName = 'recordEdit'
     }
 
     copy(record) {
@@ -26,7 +26,7 @@ export default class AccountingRecords extends React.Component {
 
     fillFormData(record) {
         this.props.dispatch(FormActions.fillForm(this.formName, record));
-        this.props.dispatch(FormActions.changeFormValue(this.formName, "_modalOpen", true))
+        this.props.dispatch(FormActions.changeFormValue(this.formName, '_modalOpen', true))
     }
 
     deleteRecord(record) {

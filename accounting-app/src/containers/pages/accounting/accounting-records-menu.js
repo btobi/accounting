@@ -1,8 +1,8 @@
 import React from 'react'
 import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
-import {connect} from "react-redux";
-import AccountingRecordNew from "./accounting-record-new";
-import {getAccountingRecords} from "actions/accountingActions";
+import {connect} from 'react-redux';
+import AccountingRecordNew from './accounting-record-new';
+import {getAccountingRecords} from 'actions/accountingActions';
 
 @connect()
 export default class AccountingRecordsMenu extends React.Component {

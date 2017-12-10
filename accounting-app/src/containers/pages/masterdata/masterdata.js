@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react'
 
-import Accounts from "./masterdata-accounts"
-import { setPageTitle } from "actions/pageActions";
-import { connect } from "react-redux";
-import { getAccounts } from "actions/masterdataActions"
+import Accounts from './masterdata-accounts'
+import { setPageTitle } from 'actions/pageActions';
+import { connect } from 'react-redux';
+import { getAccounts } from 'actions/masterdataActions'
 
 @connect((store) => {
     return {
@@ -13,7 +13,7 @@ import { getAccounts } from "actions/masterdataActions"
 export default class Masterdata extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setPageTitle("Stammdaten", "Konten anlegen und bearbeiten", "settings"))
+        this.props.dispatch(setPageTitle('Stammdaten', 'Konten anlegen und bearbeiten', 'settings'))
     }
 
     render() {

@@ -1,7 +1,7 @@
-import React from "react"
-import {connect} from "react-redux";
-import {setPageTitle} from "../actions/pageActions";
-import {Header, Icon} from "semantic-ui-react";
+import React from 'react'
+import {connect} from 'react-redux';
+import {setPageTitle} from '../actions/pageActions';
+import {Header, Icon} from 'semantic-ui-react';
 
 @connect((store) => {
     return {
@@ -12,7 +12,7 @@ import {Header, Icon} from "semantic-ui-react";
 export default class PageTitle extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setPageTitle("Willkommen", "", "protect"))
+        this.props.dispatch(setPageTitle('Willkommen', '', 'protect'))
     }
 
     render() {

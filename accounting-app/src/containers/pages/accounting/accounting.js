@@ -1,10 +1,10 @@
-import React from "react"
-import {setPageTitle} from "../../../actions/pageActions";
-import {connect} from "react-redux";
-import {getAccountingRecords} from "../../../actions/accountingActions";
-import AccountingRecords from "./accounting-records";
-import {Container, right} from "semantic-ui-react";
-import AccountingRecordsMenu from "./accounting-records-menu"
+import React from 'react'
+import {setPageTitle} from '../../../actions/pageActions';
+import {connect} from 'react-redux';
+import {getAccountingRecords} from '../../../actions/accountingActions';
+import AccountingRecords from './accounting-records';
+import {Container, right} from 'semantic-ui-react';
+import AccountingRecordsMenu from './accounting-records-menu'
 
 @connect((store) => {
     return {
@@ -15,7 +15,7 @@ import AccountingRecordsMenu from "./accounting-records-menu"
 export default class Accounting extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setPageTitle("Buchungssätze", "Monatliche Auflistung", "terminal"))
+        this.props.dispatch(setPageTitle('Buchungssätze', 'Monatliche Auflistung', 'terminal'))
         this.props.dispatch(getAccountingRecords())
     }
 

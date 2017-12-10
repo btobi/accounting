@@ -1,10 +1,10 @@
-import React from "react";
-import {connect} from "react-redux";
-import {getAccounts, postAccount} from "actions/masterdataActions";
-import {Button, Menu} from "semantic-ui-react";
-import XForm from "components/XForm"
-import FormModal from "components/FormModal";
-import { FormActions } from "react-redux-forms";
+import React from 'react';
+import {connect} from 'react-redux';
+import {getAccounts, postAccount} from 'actions/masterdataActions';
+import {Button, Menu} from 'semantic-ui-react';
+import XForm from 'components/XForm'
+import FormModal from 'components/FormModal';
+import { FormActions } from 'react-redux-forms';
 
 @connect((store) => {
     return {
@@ -15,26 +15,26 @@ export default class AccountEdit extends React.Component {
 
     componentWillMount(props) {
         this.handleSubmit = this.submit.bind(this);
-        this.formName = "accountEdit";
-        this.props.dispatch(FormActions.changeFormValue(this.formName, "_pending", false));
+        this.formName = 'accountEdit';
+        this.props.dispatch(FormActions.changeFormValue(this.formName, '_pending', false));
         close()
     }
 
     submit(event, data) {
         event.preventDefault();
-        this.props.dispatch(FormActions.changeFormValue(this.formName, "_pending", true));
+        this.props.dispatch(FormActions.changeFormValue(this.formName, '_pending', true));
         const { _pending, _modalOpen, ...account } = this.props.account;
         this.props.dispatch(postAccount(account))
             .then(() => {
                 this.close();
-                this.props.dispatch(FormActions.changeFormValue(this.formName, "_pending", false));
+                this.props.dispatch(FormActions.changeFormValue(this.formName, '_pending', false));
                 close();
                 this.props.dispatch(getAccounts())
             })
     }
 
-    close = () => this.props.dispatch(FormActions.changeFormValue(this.formName, "_modalOpen", false));
-    open = () => this.props.dispatch(FormActions.changeFormValue(this.formName, "_modalOpen", true));
+    close = () => this.props.dispatch(FormActions.changeFormValue(this.formName, '_modalOpen', false));
+    open = () => this.props.dispatch(FormActions.changeFormValue(this.formName, '_modalOpen', true));
     newEntry = () => {
         this.props.dispatch(FormActions.clearForm(this.formName));
         this.open()
@@ -44,10 +44,10 @@ export default class AccountEdit extends React.Component {
     render() {
 
         const types = [
-            {type: "EX", label: "Aufwand"},
-            {type: "RE", label: "Ertrag"},
-            {type: "AS", label: "Aktivum"},
-            {type: "LI", label: "Passivum"},
+            {type: 'EX', label: 'Aufwand'},
+            {type: 'RE', label: 'Ertrag'},
+            {type: 'AS', label: 'Aktivum'},
+            {type: 'LI', label: 'Passivum'},
         ];
 
         const typeList = types.map((a) => {

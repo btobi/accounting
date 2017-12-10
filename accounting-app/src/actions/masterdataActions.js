@@ -1,16 +1,16 @@
-import Http from "Http"
+import Http from 'Http'
 
 
 export function getAccounts() {
     return {
-        type: "FETCH_ACCOUNTS",
-        payload: Http.get("/accounts")
+        type: 'FETCH_ACCOUNTS',
+        payload: Http.get('/accounts')
     }
 }
 
 export function postAccount(account) {
     return {
-        type: "POST_ACCOUNT",
-        payload: Http.post("/account", account)
+        type: 'POST_ACCOUNT',
+        payload: Http.post('/account', account)
     }
 }

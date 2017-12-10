@@ -1,6 +1,6 @@
-import React from "react";
-import {connect} from "react-redux";
-import {setPageTitle} from "../../../actions/pageActions";
+import React from 'react';
+import {connect} from 'react-redux';
+import {setPageTitle} from '../../../actions/pageActions';
 
 @connect((store) => {
     return {
@@ -10,7 +10,7 @@ import {setPageTitle} from "../../../actions/pageActions";
 export default class StatisticsThirdParties extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setPageTitle("Dritte", "Forderungen und Verbindlichkeiten", "money"))
+        this.props.dispatch(setPageTitle('Dritte', 'Forderungen und Verbindlichkeiten', 'money'))
     }
 
 

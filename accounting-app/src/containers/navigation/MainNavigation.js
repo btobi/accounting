@@ -1,18 +1,18 @@
 import React, {Component} from 'react'
 import {Icon, Item, Menu, Segment} from 'semantic-ui-react'
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink} from 'react-router-dom';
 
-import MobileDetect from "mobile-detect"
+import MobileDetect from 'mobile-detect'
 
 export default class MainNavigation extends Component {
     render() {
 
-        const isMobile = new MobileDetect(window.navigator.userAgent).mobile()
-        const mobileStyle = isMobile ? {marginTop: 0} : {}
+        const isMobile = new MobileDetect(window.navigator.userAgent).mobile();
+        const mobileStyle = isMobile ? {marginTop: 0} : {};
 
         const style = {
             ...mobileStyle,
-        }
+        };
 
         return (
             <Menu vertical fluid={isMobile} fixed={!isMobile ? 'left' : ''}

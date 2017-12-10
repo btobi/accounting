@@ -1,8 +1,6 @@
-import React from "react"
+import React from 'react'
 
-import {Dimmer, Form, Loader} from "semantic-ui-react";
-import DjangoCSRFToken from 'django-react-csrftoken'
-import {connect} from "react-redux";
+import { Dimmer, Form, Loader } from 'semantic-ui-react';
 
 export default class CForm extends React.Component {
 

@@ -1,9 +1,9 @@
-import {applyMiddleware, createStore} from "redux";
-import {createLogger} from "redux-logger"
-import thunk from "redux-thunk"
-import promise from "redux-promise-middleware"
+import { applyMiddleware, createStore } from 'redux';
+import { createLogger } from 'redux-logger'
+import thunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 
-import combineReducers from "./reducers/index"
+import combineReducers from './reducers/index'
 
 // const middleware = applyMiddleware(promise(), thunk);
 const middleware = applyMiddleware(promise(), thunk, createLogger());

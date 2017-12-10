@@ -1,12 +1,12 @@
-import React from "react"
-import {connect} from "react-redux";
+import React from 'react'
+import {connect} from 'react-redux';
 
-import {getAccountsStatistics} from "actions/statisticsActions"
-import {Container, Divider, Grid, Header, Label, Menu, Segment, Table} from "semantic-ui-react";
-import {getAccountColor, getAccountLabel} from "../../util/commons";
-import {setPageTitle} from "../../../actions/pageActions";
-import StatisticsAccountsMenu from "./statistics-accounts-menu";
-import {number} from "../../../helpers";
+import {getAccountsStatistics} from 'actions/statisticsActions'
+import {Container, Divider, Grid, Header, Label, Menu, Segment, Table} from 'semantic-ui-react';
+import {getAccountColor, getAccountLabel} from '../../util/commons';
+import {setPageTitle} from '../../../actions/pageActions';
+import StatisticsAccountsMenu from './statistics-accounts-menu';
+import {number} from '../../../helpers';
 
 @connect((store) => {
     return {
@@ -18,13 +18,13 @@ import {number} from "../../../helpers";
 export default class StatisticsAccounts extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(getAccountsStatistics())
-        this.props.dispatch(setPageTitle("Kontenübersicht", "Auflistung nach Kontentyp", "pie chart"))
+        this.props.dispatch(getAccountsStatistics());
+        this.props.dispatch(setPageTitle('Kontenübersicht', 'Auflistung nach Kontentyp', 'pie chart'))
     }
 
     getTotalOfType(type) {
-        let total = 0
-        this.getAccountsOfType(type).forEach((a) => total += a.total)
+        let total = 0;
+        this.getAccountsOfType(type).forEach((a) => total += a.total);
         return total
     }
 
@@ -55,7 +55,7 @@ export default class StatisticsAccounts extends React.Component {
                     <Divider hidden/>
                 </Grid.Column>
             )
-        })
+        });
         return accounts
     }
 
@@ -75,7 +75,7 @@ export default class StatisticsAccounts extends React.Component {
     getRecords(account) {
         return account.records.map(r => {
             const label = r.isDebit ? (<Label size="tiny" color="black" circular empty/>) : (
-                <Label color="orange" circular empty/>)
+                <Label color="orange" circular empty/>);
             return (
                 <Table.Row key={r.id}>
                     <Table.Cell>{label}</Table.Cell>
@@ -114,10 +114,10 @@ export default class StatisticsAccounts extends React.Component {
 
                 <StatisticsAccountsMenu year={this.props.year} month={this.props.month} />
 
-                {this.getSection("AS", "Aktiva")}
-                {this.getSection("LI", "Passiva")}
-                {this.getSection("RE", "Ertragskonten")}
-                {this.getSection("EX", "Aufwandskonten")}
+                {this.getSection('AS', 'Aktiva')}
+                {this.getSection('LI', 'Passiva')}
+                {this.getSection('RE', 'Ertragskonten')}
+                {this.getSection('EX', 'Aufwandskonten')}
             </div>
         )
     }

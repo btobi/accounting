@@ -1,10 +1,10 @@
 import React from 'react'
 import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
-import {connect} from "react-redux";
-import {getSpreadsheetData} from "../../../actions/statisticsActions";
-import {getAccountLabel} from "../../util/commons";
-import {setPageTitle} from "../../../actions/pageActions";
-import {number} from "helpers"
+import {connect} from 'react-redux';
+import {getSpreadsheetData} from '../../../actions/statisticsActions';
+import {getAccountLabel} from '../../util/commons';
+import {setPageTitle} from '../../../actions/pageActions';
+import {number} from 'helpers'
 
 @connect((store) => {
     return {
@@ -14,15 +14,15 @@ import {number} from "helpers"
 export default class StatisticsSpreadsheet extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(getSpreadsheetData())
-        this.props.dispatch(setPageTitle("Bilanz", "Jahresübersicht", "table"))
+        this.props.dispatch(getSpreadsheetData());
+        this.props.dispatch(setPageTitle('Bilanz', 'Jahresübersicht', 'table'))
     }
 
     spreadsheet() {
 
-        const spreadsheet = this.props.spreadsheet
+        const spreadsheet = this.props.spreadsheet;
 
-        const columns = []
+        const columns = [];
 
         for (let i = 1; i <= 12; i++)
             columns.push(i)
@@ -54,7 +54,7 @@ export default class StatisticsSpreadsheet extends React.Component {
 
     render() {
 
-        console.log(this.props.spreadsheet)
+        console.log(this.props.spreadsheet);
 
         return (<div>
             {this.spreadsheet()}

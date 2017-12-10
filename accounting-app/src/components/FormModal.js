@@ -1,10 +1,8 @@
-import React from "react"
+import React from 'react'
 import PropTypes from 'prop-types';
 
-import {Button, Dimmer, Form, Loader, Modal} from "semantic-ui-react";
-import DjangoCSRFToken from 'django-react-csrftoken'
-import {connect} from "react-redux";
-import CForm from "./CForm";
+import {Button, Modal} from 'semantic-ui-react';
+import CForm from './CForm';
 
 export default class FormModal extends React.Component {
 
