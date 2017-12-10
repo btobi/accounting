@@ -40,6 +40,6 @@ This project depends on https://github.com/btobi/react-redux-forms. Check link i
 
 ### Settings Table
 
-| Setting ID        | Values           | Description  |
+| Setting ID | Values | Description |
 | :--- |:---| :--- |
 |showOpenings | True, False | Show opening accounts |
