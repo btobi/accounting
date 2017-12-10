@@ -53,7 +53,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    'EXCEPTION_HANDLER': 'app.exceptions.exceptionhandler.custom_exception_handler'
 }
 
 ROOT_URLCONF = 'dj.urls'

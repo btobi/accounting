@@ -35,7 +35,7 @@ class Account(models.Model):
 class AccountingRecord(models.Model):
     debit = models.ForeignKey(Account, null=False, blank=False, related_name="records_debit")
     credit = models.ForeignKey(Account, null=False, blank=False, related_name="records_credit")
-    amount = models.FloatField()
+    amount = models.DecimalField(decimal_places=4, max_digits=9999999)
     date = models.DateField()
     comment = models.CharField(max_length=200)
     person = models.CharField(max_length=100, null=True, default=None, blank=True)
@@ -46,7 +46,7 @@ class AccountingRecord(models.Model):
 
 class AccountingRecordBase(models.Model):
     record = models.ForeignKey(AccountingRecord, related_name="record_base", on_delete=models.CASCADE)
-    amount = models.FloatField()
+    amount = models.DecimalField(decimal_places=4, max_digits=9999999)
     date = models.DateField()
     comment = models.CharField(max_length=200)
     person = models.CharField(max_length=100, null=True, default=None, blank=True)
