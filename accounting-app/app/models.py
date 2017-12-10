@@ -91,3 +91,6 @@ class Setting(models.Model):
     key = models.CharField(primary_key=True, max_length=20)
     value = models.TextField()
 
+    def __str__(self):
+        return "[{}]: {}".format(self.key, self.value)
+
