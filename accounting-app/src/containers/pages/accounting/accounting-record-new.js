@@ -22,7 +22,7 @@ export default class AccountingRecordNew extends React.Component {
         this.handleSubmit = this.submit.bind(this);
         this.formName = 'recordEdit';
         this.props.dispatch(FormActions.changeFormValue(this.formName, '_pending', false));
-        close()
+        this.close()
     }
 
     submit(event, data) {
@@ -53,7 +53,7 @@ export default class AccountingRecordNew extends React.Component {
             return {
                 key: a.number + ' ' + a.name,
                 value: a.id,
-                text: <div>{a.number} &nbsp; {a.name}</div>,
+                text: `${a.number} ${a.name}`,
             }
         });
 
@@ -78,9 +78,9 @@ export default class AccountingRecordNew extends React.Component {
                     <XForm.Input name="id" form={formName} type="hidden"/>
                     <h3>Konten</h3>
                     <Form.Group widths="equal">
-                        <XForm.Dropdown label="Soll" placeholder="Konto - Soll" selection options={accounts}
+                        <XForm.Dropdown label="Soll" placeholder="Konto - Soll" options={accounts}
                                         name="debit_id" form={formName}/>
-                        <XForm.Dropdown label="Haben" placeholder="Konto - Haben" selection options={accounts}
+                        <XForm.Dropdown label="Haben" placeholder="Konto - Haben" options={accounts}
                                         name="credit_id" form={formName}/>
                     </Form.Group>
                     <h3>Info</h3>

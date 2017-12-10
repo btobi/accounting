@@ -75,7 +75,7 @@ export default class AccountEdit extends React.Component {
                            button="Speichern" icon="save" close={this.close.bind(this)} pending={pending}>
                     <XForm.Input label="Kontennummer" name="number" form="accountEdit"/>
                     <XForm.Input label="Name" name="name" form="accountEdit"/>
-                    <XForm.Dropdown label="Kontentyp" selection
+                    <XForm.Dropdown label="Kontentyp"
                                    options={typeList} name="type" form="accountEdit"/>
                     <XForm.Input label="IBAN" name="iban" form="accountEdit"/>
                 </FormModal>
