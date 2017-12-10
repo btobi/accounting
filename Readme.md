@@ -34,8 +34,12 @@ Guide with respect to development in Pycharm (Jetbrains).
 3. Go to localhost:8000 and login with created user
 4. Navigate to localhost:8000/admin, and create new user if desired
 
+### Dependencies
+
+This project depends on https://github.com/btobi/react-redux-forms. Check link in *package.json*.
+
 ### Settings Table
 
 | Setting ID        | Values           | Description  |
-| ------------- |:-------------:| --- |
+| :--- |:---| :--- |
 |showOpenings | True, False | Show opening accounts |
