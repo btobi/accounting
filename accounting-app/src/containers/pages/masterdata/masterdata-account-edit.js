@@ -17,7 +17,7 @@ export default class AccountEdit extends React.Component {
         this.handleSubmit = this.submit.bind(this);
         this.formName = 'accountEdit';
         this.props.dispatch(FormActions.changeFormValue(this.formName, '_pending', false));
-        close()
+        this.close()
     }
 
     submit(event, data) {
@@ -28,7 +28,7 @@ export default class AccountEdit extends React.Component {
             .then(() => {
                 this.close();
                 this.props.dispatch(FormActions.changeFormValue(this.formName, '_pending', false));
-                close();
+                this.close();
                 this.props.dispatch(getAccounts())
             })
     }
